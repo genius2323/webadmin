@@ -99,14 +99,7 @@
                         </a>
                     </li>
                 <?php endif; ?>
-            </ul>
-            
-            <!-- Tombol Logout di sidebar paling bawah -->
-            <div style="position: absolute; bottom: 20px; width: 100%; text-align: center;">
-                <a href="<?= site_url('logout') ?>" class="btn btn-danger btn-block" style="max-width:90%;margin:auto;">
-                    <i class="fa fa-sign-out-alt"></i> Logout
-                </a>
-            </div>
+            </ul>                
         </div>
     </div>
 </div>

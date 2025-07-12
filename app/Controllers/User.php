@@ -38,9 +38,10 @@ class User extends BaseController
         $userModel->insert($data);
         $userId = $userModel->getInsertID();
 
-        // Simpan user di database kedua
-        $db2->table('users')->insert($data);
-        $userIdDb2 = $db2->insertID();
+        // Simpan user di database kedua dengan id yang sama
+        $dataDb2 = $data;
+        $dataDb2['id'] = $userId;
+        $db2->table('users')->insert($dataDb2);
 
         // Simpan relasi user-departemen di kedua database
         $departments = $this->request->getPost('departments');
@@ -50,7 +51,7 @@ class User extends BaseController
                 'department_id' => $deptId
             ]);
             $db2->table('user_departments')->insert([
-                'user_id' => $userIdDb2,
+                'user_id' => $userId,
                 'department_id' => $deptId
             ]);
         }
@@ -60,7 +61,106 @@ class User extends BaseController
 
     public function edit($id)
     {
-        // Implementasi edit user
+        $userModel = new UserModel();
+        $userDepartmentModel = new \App\Models\UserDepartmentModel();
+        $db = \Config\Database::connect();
+
+        // Ambil data user
+        $user = $userModel->find($id);
+        if (!$user || $user['deleted_at']) {
+            return redirect()->to('user')->with('error', 'User tidak ditemukan.');
+        }
+
+        // Ambil semua departemen
+        $departments = $db->table('departments')->where('deleted_at', null)->get()->getResultArray();
+
+        // Ambil relasi user-department
+        $userDepartments = $userDepartmentModel->where('user_id', $id)->where('deleted_at', null)->findAll();
+        $userDepartmentsIds = array_column($userDepartments, 'department_id');
+
+        return view('user/edit', [
+            'user' => $user,
+            'departments' => $departments,
+            'userDepartments' => $userDepartmentsIds
+        ]);
+    }
+
+    public function update($id)
+    {
+        $userModel = new UserModel();
+        $userDepartmentModel = new \App\Models\UserDepartmentModel();
+        $db2 = \Config\Database::connect('db2');
+
+        $user = $userModel->find($id);
+        if (!$user || $user['deleted_at']) {
+            return redirect()->to('user')->with('error', 'User tidak ditemukan.');
+        }
+
+        $data = [
+            'kode_ky' => $this->request->getPost('kode_ky'),
+            'username' => $this->request->getPost('username'),
+            'alamat' => $this->request->getPost('alamat'),
+            'noktp' => $this->request->getPost('noktp'),
+        ];
+        $password = $this->request->getPost('password');
+        if ($password) {
+            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        // Update user di database utama
+        $userModel->update($id, $data);
+
+        // Pastikan update di db2 menggunakan id yang sama
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $db2->table('users')->where('id', $id)->update($dataDb2);
+
+        // Update relasi departemen
+        $departments = $this->request->getPost('departments') ?? [];
+        // Ambil semua relasi lama
+        $oldRelations = $userDepartmentModel->where('user_id', $id)->findAll();
+        $oldDeptIds = array_column($oldRelations, 'department_id');
+
+        // 1. Soft delete relasi yang di-off-kan
+        $toSoftDelete = array_diff($oldDeptIds, $departments);
+        foreach ($toSoftDelete as $deptId) {
+            $userDepartmentModel->where('user_id', $id)->where('department_id', $deptId)->set(['deleted_at' => date('Y-m-d H:i:s')])->update();
+            $db2->table('user_departments')->where('user_id', $id)->where('department_id', $deptId)->update(['deleted_at' => date('Y-m-d H:i:s')]);
+        }
+
+        // 2. Aktifkan relasi yang di-on-kan (deleted_at=null jika sebelumnya softdelete)
+        foreach ($departments as $deptId) {
+            // Cek apakah relasi sudah ada di database utama
+            $relation = $userDepartmentModel->where('user_id', $id)->where('department_id', $deptId)->first();
+            if ($relation) {
+                // Jika relasi ada dan softdelete, aktifkan
+                if ($relation['deleted_at']) {
+                    $userDepartmentModel->where('id', $relation['id'])->set(['deleted_at' => null])->update();
+                }
+            } else {
+                // Jika belum ada, insert baru
+                $userDepartmentModel->insert([
+                    'user_id' => $id,
+                    'department_id' => $deptId,
+                    'deleted_at' => null
+                ]);
+            }
+            // Database kedua
+            $relation2 = $db2->table('user_departments')->where('user_id', $id)->where('department_id', $deptId)->get()->getRowArray();
+            if ($relation2) {
+                if ($relation2['deleted_at']) {
+                    $db2->table('user_departments')->where('id', $relation2['id'])->update(['deleted_at' => null]);
+                }
+            } else {
+                $db2->table('user_departments')->insert([
+                    'user_id' => $id,
+                    'department_id' => $deptId,
+                    'deleted_at' => null
+                ]);
+            }
+        }
+
+        return redirect()->to('user')->with('success', 'User berhasil diupdate di dua database');
     }
 
     public function delete($id)
