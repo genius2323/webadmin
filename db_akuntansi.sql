@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2025 at 09:51 AM
+-- Generation Time: Jul 12, 2025 at 01:02 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -530,12 +530,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `kode_ky`, `alamat`, `noktp`, `deleted_at`, `recovered_at`, `otoritas`, `created_at`, `updated_at`) VALUES
 (234, 'delby', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'delby', NULL, '', '2025-07-07 05:46:54', '2025-07-07 05:46:46', 'T', '2025-07-05 14:20:16', '2025-07-07 05:46:54'),
-(909, 'geni1819', '$2y$10$yCVdmEq9i2kd62zm98/6X.I/ichcTL/s/ePbIL4zNAHrUJ9Sm6tOK', 'geni', 'canggu', '', NULL, NULL, NULL, '2025-07-05 14:20:16', '2025-07-12 10:29:52'),
+(909, 'geni1819', '$2y$10$yCVdmEq9i2kd62zm98/6X.I/ichcTL/s/ePbIL4zNAHrUJ9Sm6tOK', 'geni', 'canggu', '32534535434534', NULL, NULL, NULL, '2025-07-05 14:20:16', '2025-07-12 16:04:24'),
 (910, 'test1819', 'Genius1819', 'test', 'Canggu', '9727312873218312', '2025-07-07 04:29:52', NULL, 'T', '2025-07-05 14:34:12', '2025-07-07 04:29:52'),
-(911, 'yono1819', '$2y$10$gRiHXmoawoyrbXpCeWcR.ObcuEAkH/TgbSy3IdxEYKl5xIIYzNrwu', 'yono', 'buduk', '', NULL, NULL, NULL, '2025-07-09 03:34:37', '2025-07-09 03:46:19'),
-(912, 'budi123', '$2y$10$kXkZA9UcGmuATZjoX5RpZuh6PO3xz/zyg3YuFJ/A4HaWfnzwUCKUG', 'budi', 'canggu', '', NULL, '2025-07-09 03:47:36', NULL, '2025-07-09 03:37:25', '2025-07-09 03:47:36'),
-(913, 'budis123', '$2y$10$y7HuCFphwIK.9mgwzLqSNOy0.CJCy2PzmEiPT9TvVVR/ny7s/Ja4y', 'budis', 'canggu', '', NULL, '2025-07-09 03:47:34', NULL, '2025-07-09 03:40:16', '2025-07-09 03:47:34'),
-(914, 'tono123', '$2y$10$JNP1mOPI1U.ZlA.HRXHOQOYfpHla3/n2OEWRlDHczcnbt47ouzruG', 'tono', 'sfewfwe', '', NULL, NULL, NULL, '2025-07-09 03:42:13', '2025-07-09 07:33:25'),
+(911, 'yono1819', '$2y$10$gRiHXmoawoyrbXpCeWcR.ObcuEAkH/TgbSy3IdxEYKl5xIIYzNrwu', 'yono', 'buduk', '', '2025-07-12 08:22:00', NULL, NULL, '2025-07-09 03:34:37', '2025-07-12 16:22:00'),
+(912, 'budi123', '$2y$10$kXkZA9UcGmuATZjoX5RpZuh6PO3xz/zyg3YuFJ/A4HaWfnzwUCKUG', 'budi', 'canggu', '', '2025-07-12 08:22:08', '2025-07-09 03:47:36', NULL, '2025-07-09 03:37:25', '2025-07-12 16:22:08'),
+(913, 'budis123', '$2y$10$y7HuCFphwIK.9mgwzLqSNOy0.CJCy2PzmEiPT9TvVVR/ny7s/Ja4y', 'budis', 'canggu', '', '2025-07-12 08:27:59', '2025-07-09 03:47:34', NULL, '2025-07-09 03:40:16', '2025-07-12 16:27:59'),
+(914, 'tono123', '$2y$10$JNP1mOPI1U.ZlA.HRXHOQOYfpHla3/n2OEWRlDHczcnbt47ouzruG', 'tono', 'sfewfwe', '', '2025-07-12 08:27:56', NULL, NULL, '2025-07-09 03:42:13', '2025-07-12 16:27:56'),
 (918, 'babi1819', '$2y$10$x9hUob.AJi82gLlO6ghRfeURyawWXWpoVCT5j6OLDqi50wmqojq6.', 'babi', 'canggu', '42372397843928742', '2025-07-12 06:43:31', NULL, NULL, '2025-07-12 14:38:01', '2025-07-12 14:43:31'),
 (919, 'babi1819', '$2y$10$tiXdrlRlGa5bxJNOiESQTeLSvSWOPbXjHBn1hEMNY6gmDsPJtCOcm', 'babi', 'canggu', '42372397843928742', '2025-07-12 06:43:31', NULL, NULL, '2025-07-12 14:38:02', '2025-07-12 14:49:45'),
 (920, 'rani123', '$2y$10$.HqjCYLqGA87L7w6AkxUPOGY5xPtjGg.GvZw5U4Z6KRyaTYNuKMA2', 'rani', 'canggu', '23949328492834', NULL, NULL, NULL, '2025-07-12 14:48:00', '2025-07-12 14:48:00');
@@ -558,9 +558,15 @@ CREATE TABLE `user_departments` (
 --
 
 INSERT INTO `user_departments` (`id`, `user_id`, `department_id`, `deleted_at`) VALUES
-(7, 920, 1, NULL),
-(8, 920, 2, NULL),
-(9, 920, 3, NULL);
+(7, 920, 1, '2025-07-12 08:04:39'),
+(8, 920, 2, '2025-07-12 08:04:39'),
+(9, 920, 3, '2025-07-12 08:04:39'),
+(10, 909, 1, NULL),
+(11, 909, 2, '2025-07-12 08:21:48'),
+(12, 909, 3, NULL),
+(13, 920, 1, NULL),
+(14, 920, 2, NULL),
+(15, 920, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -941,7 +947,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_departments`
 --
 ALTER TABLE `user_departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `voltase`
