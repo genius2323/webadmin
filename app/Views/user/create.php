@@ -16,17 +16,17 @@
     <div class="card-body">
         <form action="<?= site_url('user/store') ?>" method="post">
             <div class="form-group">
-                <label>Kode KY</label>
-                <input type="text" name="kode_ky" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" required>
+                <label>Nama</label>
+                <input type="text" name="nama" class="form-control" required>
             </div>
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control" required>
             </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>           
             <div class="form-group">
                 <label>No KTP</label>
                 <input type="text" name="noktp" class="form-control" required>
@@ -45,7 +45,7 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <small class="form-text text-muted">Pilih satu atau lebih departemen dengan tombol on/off.</small>
+                <small class="form-text text-muted">Pilih Satu atau Lebih Departemen</small>
             </div>
             <div class="form-group text-right">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>

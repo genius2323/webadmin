@@ -1,0 +1,73 @@
+<?php
+namespace App\Controllers;
+use App\Models\MasterSatuanModel;
+use CodeIgniter\Controller;
+class MasterSatuan extends Controller
+{
+    protected $masterSatuanModel;
+    protected $db2;
+    public function __construct()
+    {
+        $this->masterSatuanModel = new MasterSatuanModel();
+        $this->db2 = \Config\Database::connect('db2');
+    }
+    public function index()
+    {
+        $keyword = $this->request->getVar('keyword');
+        $data = [
+            'title' => 'Master Satuan',
+            'satuan' => $this->masterSatuanModel->getData($keyword),
+            'keyword' => $keyword
+        ];
+        return view('master_satuan/index', $data);
+    }
+    public function create()
+    {
+        return view('master_satuan/create');
+    }
+    public function save()
+    {
+        $session = session();
+        $nama_ky = $session->get('user_nama');
+        $data = [
+            'nama_satuan' => $this->request->getVar('nama_satuan'),
+            'nama_ky' => $nama_ky,
+            'otoritas' => null
+        ];
+        $this->masterSatuanModel->insert($data);
+        $this->db2->table('satuan')->insert($data);
+        return redirect()->to('/mastersatuan')->with('success', 'Data berhasil ditambahkan.');
+    }
+    public function edit($id)
+    {
+        $data = [
+            'satuan' => $this->masterSatuanModel->find($id)
+        ];
+        return view('master_satuan/edit', $data);
+    }
+    public function update($id)
+    {
+        $session = session();
+        $nama_ky = $session->get('user_nama');
+        $data = [
+            'nama_satuan' => $this->request->getVar('nama_satuan'),
+            'nama_ky' => $nama_ky,
+            'otoritas' => null
+        ];
+        $this->masterSatuanModel->update($id, $data);
+        $this->db2->table('satuan')->where('id', $id)->update($data);
+        return redirect()->to('/mastersatuan')->with('success', 'Data berhasil diubah.');
+    }
+    public function delete($id)
+    {
+        $session = session();
+        $nama_ky = $session->get('user_nama');
+        $data = [
+            'deleted_at' => date('Y-m-d H:i:s'),
+            'nama_ky' => $nama_ky
+        ];
+        $this->masterSatuanModel->update($id, $data);
+        $this->db2->table('satuan')->where('id', $id)->update($data);
+        return redirect()->to('/mastersatuan')->with('success', 'Data berhasil dihapus.');
+    }
+}

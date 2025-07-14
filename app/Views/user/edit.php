@@ -16,17 +16,17 @@
     <div class="card-body">
         <form action="<?= site_url('user/update/' . $user['id']) ?>" method="post">
             <div class="form-group">
-                <label>Kode KY</label>
-                <input type="text" name="kode_ky" class="form-control" value="<?= esc($user['kode_ky']) ?>" required>
-            </div>
-            <div class="form-group">
-                <label>Password (isi jika ingin ganti)</label>
-                <input type="password" name="password" class="form-control">
+                <label>Nama</label>
+                <input type="text" name="nama" class="form-control" value="<?= esc($user['nama']) ?>" required>
             </div>
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control" value="<?= esc($user['username']) ?>" required>
             </div>
+            <div class="form-group">
+                <label>Password (isi jika ingin ganti)</label>
+                <input type="password" name="password" class="form-control">
+            </div>           
             <div class="form-group">
                 <label>No KTP</label>
                 <input type="text" name="noktp" class="form-control" value="<?= esc($user['noktp']) ?>" required>

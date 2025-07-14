@@ -79,6 +79,7 @@
                             Manajemen User
                             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                         </a>
+                
                         <ul>
                             <li>
                                 <a href="<?= site_url('user') ?>" class="<?= $uri->getSegment(1) == 'user' ? 'mm-active' : '' ?>">
@@ -87,7 +88,81 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>                    
+                
+                    <li>
+                        <a href="#" class="<?= in_array($uri->getSegment(1), ['masterkategori','masterdaya']) ? 'mm-active' : '' ?>">
+                            <i class="metismenu-icon fa fa-list-alt"></i>
+                            Master Klasifikasi
+                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="<?= site_url('masterkategori') ?>" class="<?= $uri->getSegment(1) == 'masterkategori' ? 'mm-active' : '' ?>">
+                                    <i class="metismenu-icon pe-7s-id"></i>
+                                    Master Kategori
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= site_url('masterdaya') ?>" class="<?= $uri->getSegment(1) == 'masterdaya' ? 'mm-active' : '' ?>">
+                                    <i class="metismenu-icon fa fa-bolt"></i>
+                                    Master Daya
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('masterdimensi') ?>">Dimensi</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('masterfiting') ?>">Fiting</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('mastergondola') ?>">Gondola</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('masterjenis') ?>">Jenis</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('masterjumlahmata') ?>">Jumlah Mata</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('masterkaki') ?>">Kaki</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('mastermerk') ?>">Merk</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('mastermodel') ?>">Model</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('masterpelengkap') ?>">Pelengkap</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('mastersatuan') ?>">Satuan</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('masterukuranbarang') ?>">Ukuran Barang</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('mastervoltase') ?>">Voltase</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('masterwarnabibir') ?>">Warna Bibir</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('masterwarnabody') ?>">Warna Body</a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('masterwarnasinar') ?>">Warna Sinar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="app-sidebar__heading">Fasilitas</li>
+                    <li>
+                        <a href="<?= site_url('/') ?>" class="<?= $uri->getSegment(1) == '' ? 'mm-active' : '' ?>">
+                            <i class="metismenu-icon pe-7s-rocket"></i>
+                            Otoritas
+                        </a>
+                    </li>               
                     
                 <?php else: // Default ?>
                     <?php $uri = service('uri'); ?>

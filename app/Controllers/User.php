@@ -27,7 +27,7 @@ class User extends BaseController
         $db2 = \Config\Database::connect('db2');
 
         $data = [
-            'kode_ky' => $this->request->getPost('kode_ky'),
+            'nama' => $this->request->getPost('nama'),
             'username' => $this->request->getPost('username'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
             'alamat' => $this->request->getPost('alamat'),
@@ -97,7 +97,7 @@ class User extends BaseController
         }
 
         $data = [
-            'kode_ky' => $this->request->getPost('kode_ky'),
+            'nama' => $this->request->getPost('nama'),
             'username' => $this->request->getPost('username'),
             'alamat' => $this->request->getPost('alamat'),
             'noktp' => $this->request->getPost('noktp'),

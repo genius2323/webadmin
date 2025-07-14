@@ -22,11 +22,16 @@
     </div>
     <div class="app-header__menu">
         <span>
-            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-                <span class="btn-icon-wrapper">
-                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+            <div class="app-header-right">          
+            <div class="widget-content-left ml-3 header-user-info d-flex align-items-center" style="gap: 10px;">
+                <span class="widget-heading mb-0" style="font-weight:500;">
+                    <?= esc(session()->get('user_nama')) ?>
                 </span>
-            </button>
+                <a href="<?= site_url('logout') ?>" class="btn btn-danger btn-sm" style="margin-left:10px;">
+                    <i class="fa fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
         </span>
     </div>
     <div class="app-header__content">
@@ -42,7 +47,7 @@
         <div class="app-header-right">          
             <div class="widget-content-left ml-3 header-user-info d-flex align-items-center" style="gap: 10px;">
                 <span class="widget-heading mb-0" style="font-weight:500;">
-                    <?= esc(session()->get('user_username')) ?>
+                    <?= esc(session()->get('user_nama')) ?>
                 </span>
                 <a href="<?= site_url('logout') ?>" class="btn btn-danger btn-sm" style="margin-left:10px;">
                     <i class="fa fa-sign-out-alt"></i> Logout

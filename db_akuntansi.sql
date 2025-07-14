@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2025 at 01:02 PM
+-- Generation Time: Jul 14, 2025 at 02:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,7 +33,7 @@ CREATE TABLE `categories` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `batas_tanggal_sistem` date DEFAULT NULL,
   `mode_batas_tanggal` varchar(20) DEFAULT 'automatic',
   `created_at` datetime DEFAULT current_timestamp(),
@@ -46,7 +46,7 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `kode_cat`, `name`, `description`, `otoritas`, `kode_ky`, `batas_tanggal_sistem`, `mode_batas_tanggal`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`) VALUES
+INSERT INTO `categories` (`id`, `kode_cat`, `name`, `description`, `otoritas`, `nama_ky`, `batas_tanggal_sistem`, `mode_batas_tanggal`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`) VALUES
 (2, '', 'Mouse', '', NULL, NULL, NULL, 'automatic', '2025-07-07 06:44:40', '2025-07-07 07:08:19', '2025-07-07 07:08:19', NULL),
 (3, 'LAPT', 'LAPTOP', '', NULL, NULL, NULL, NULL, '2025-07-07 07:11:24', '2025-07-10 03:19:44', NULL, NULL),
 (4, 'SPEA', 'Speaker', '', NULL, NULL, NULL, NULL, '2025-07-07 07:33:19', '2025-07-10 03:14:29', NULL, NULL),
@@ -58,7 +58,8 @@ INSERT INTO `categories` (`id`, `kode_cat`, `name`, `description`, `otoritas`, `
 (10, 'PRIN', 'PRINTER', '', NULL, NULL, NULL, 'automatic', '2025-07-10 03:31:30', '2025-07-10 03:31:30', NULL, NULL),
 (11, 'PINT', 'PINTU', '', NULL, 'geni', NULL, 'automatic', '2025-07-10 03:36:22', '2025-07-10 03:36:22', NULL, NULL),
 (12, 'LUKI', 'LUKISAN', '', NULL, 'geni', NULL, 'automatic', '2025-07-10 03:58:45', '2025-07-10 03:58:45', NULL, NULL),
-(13, 'GALO', 'GALON', '', NULL, 'geni', NULL, 'automatic', '2025-07-10 03:59:38', '2025-07-10 03:59:38', NULL, NULL);
+(13, 'GALO', 'GALON', '', NULL, 'geni', NULL, 'automatic', '2025-07-10 03:59:38', '2025-07-10 03:59:38', NULL, NULL),
+(14, 'MONI', 'MONITOR', '', NULL, 'Genius Hartono', NULL, 'automatic', '2025-07-12 21:36:28', '2025-07-12 21:51:24', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,7 @@ CREATE TABLE `daya` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -101,8 +102,10 @@ CREATE TABLE `daya` (
 -- Dumping data for table `daya`
 --
 
-INSERT INTO `daya` (`id`, `name`, `description`, `otoritas`, `kode_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
-(1, '100W', '', NULL, NULL, '2025-07-10 01:04:20', '2025-07-10 01:04:20', NULL, NULL, NULL, 'automatic');
+INSERT INTO `daya` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
+(1, '100W', '', NULL, NULL, '2025-07-10 01:04:20', '2025-07-10 01:04:20', NULL, NULL, NULL, 'automatic'),
+(2, '200W', '', NULL, 'Genius Hartono', '2025-07-12 22:07:20', '2025-07-12 22:07:20', NULL, NULL, NULL, 'automatic'),
+(3, '300W', '', NULL, 'Genius Hartono', '2025-07-12 23:03:02', '2025-07-12 23:03:02', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
 
@@ -139,7 +142,7 @@ CREATE TABLE `dimensi` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -147,6 +150,17 @@ CREATE TABLE `dimensi` (
   `batas_tanggal_sistem` date DEFAULT NULL,
   `mode_batas_tanggal` varchar(20) DEFAULT 'automatic'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dimensi`
+--
+
+INSERT INTO `dimensi` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
+(3, '10M', NULL, NULL, 'Genius Hartono', '2025-07-14 00:14:40', '2025-07-14 00:14:40', NULL, NULL, NULL, 'automatic'),
+(6, '20M', NULL, NULL, 'Genius Hartono', '2025-07-14 00:27:38', '2025-07-14 00:27:38', NULL, NULL, NULL, 'automatic'),
+(7, '30M', NULL, NULL, 'Genius Hartono', '2025-07-14 00:35:37', '2025-07-14 00:35:37', NULL, NULL, NULL, 'automatic'),
+(8, '30M', NULL, NULL, 'Genius Hartono', '2025-07-14 00:37:10', '2025-07-14 00:37:10', NULL, NULL, NULL, 'automatic'),
+(9, '30M', NULL, NULL, 'Genius Hartono', '2025-07-14 00:47:09', '2025-07-14 00:47:09', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
 
@@ -159,7 +173,7 @@ CREATE TABLE `fiting` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -179,7 +193,7 @@ CREATE TABLE `gondola` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -187,6 +201,13 @@ CREATE TABLE `gondola` (
   `batas_tanggal_sistem` date DEFAULT NULL,
   `mode_batas_tanggal` varchar(20) DEFAULT 'automatic'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `gondola`
+--
+
+INSERT INTO `gondola` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
+(1, 'RAK A', NULL, NULL, 'Genius Hartono', '2025-07-14 01:02:35', '2025-07-14 01:02:35', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
 
@@ -199,7 +220,7 @@ CREATE TABLE `jenis` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `batas_tanggal_sistem` date DEFAULT NULL,
   `mode_batas_tanggal` varchar(20) DEFAULT 'automatic',
   `created_at` datetime DEFAULT current_timestamp(),
@@ -219,7 +240,7 @@ CREATE TABLE `jumlah_mata` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -232,7 +253,7 @@ CREATE TABLE `jumlah_mata` (
 -- Dumping data for table `jumlah_mata`
 --
 
-INSERT INTO `jumlah_mata` (`id`, `name`, `description`, `otoritas`, `kode_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
+INSERT INTO `jumlah_mata` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
 (1, 'TIGA MATA', '', NULL, NULL, '2025-07-10 01:33:09', '2025-07-10 01:33:09', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
@@ -246,7 +267,7 @@ CREATE TABLE `kaki` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -266,7 +287,7 @@ CREATE TABLE `merk` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -302,7 +323,7 @@ CREATE TABLE `model` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -320,7 +341,7 @@ CREATE TABLE `pelengkap` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -333,7 +354,7 @@ CREATE TABLE `pelengkap` (
 -- Dumping data for table `pelengkap`
 --
 
-INSERT INTO `pelengkap` (`id`, `name`, `description`, `otoritas`, `kode_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
+INSERT INTO `pelengkap` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
 (1, 'TUTUP', '', NULL, NULL, '2025-07-10 01:34:56', '2025-07-10 01:34:56', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
@@ -371,14 +392,14 @@ CREATE TABLE `products` (
   `batas_tanggal_sistem` date DEFAULT NULL,
   `mode_batas_tanggal` varchar(20) DEFAULT 'automatic',
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(32) DEFAULT NULL
+  `nama_ky` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `satuan_id`, `jenis_id`, `pelengkap_id`, `gondola_id`, `merk_id`, `warna_sinar_id`, `ukuran_barang_id`, `voltase_id`, `dimensi_id`, `warna_body_id`, `warna_bibir_id`, `kaki_id`, `model_id`, `fiting_id`, `daya_id`, `jumlah_mata_id`, `name`, `price`, `stock`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`, `otoritas`, `kode_ky`) VALUES
+INSERT INTO `products` (`id`, `category_id`, `satuan_id`, `jenis_id`, `pelengkap_id`, `gondola_id`, `merk_id`, `warna_sinar_id`, `ukuran_barang_id`, `voltase_id`, `dimensi_id`, `warna_body_id`, `warna_bibir_id`, `kaki_id`, `model_id`, `fiting_id`, `daya_id`, `jumlah_mata_id`, `name`, `price`, `stock`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`, `otoritas`, `nama_ky`) VALUES
 (2, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Laptop HP', 32535435.00, 12, '2025-07-09 07:34:43', '2025-07-09 07:34:43', NULL, NULL, NULL, 'automatic', NULL, NULL),
 (3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LAPTOP Asus', 1242123.00, 12, '2025-07-10 05:42:42', '2025-07-10 05:42:42', NULL, NULL, NULL, 'automatic', NULL, 'geni');
 
@@ -443,7 +464,7 @@ CREATE TABLE `satuan` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `batas_tanggal_sistem` date DEFAULT NULL,
   `mode_batas_tanggal` varchar(20) DEFAULT 'automatic',
   `created_at` datetime DEFAULT current_timestamp(),
@@ -456,7 +477,7 @@ CREATE TABLE `satuan` (
 -- Dumping data for table `satuan`
 --
 
-INSERT INTO `satuan` (`id`, `name`, `description`, `otoritas`, `kode_ky`, `batas_tanggal_sistem`, `mode_batas_tanggal`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`) VALUES
+INSERT INTO `satuan` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `batas_tanggal_sistem`, `mode_batas_tanggal`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`) VALUES
 (1, 'cms', '', NULL, NULL, NULL, 'automatic', '2025-07-08 01:42:42', '2025-07-08 04:02:02', '2025-07-08 04:02:02', NULL),
 (2, 'cm', '', NULL, NULL, NULL, 'automatic', '2025-07-08 04:02:25', '2025-07-08 04:02:25', NULL, NULL),
 (3, 'kg', '', NULL, NULL, NULL, 'automatic', '2025-07-08 04:02:33', '2025-07-08 04:02:33', NULL, NULL),
@@ -495,7 +516,7 @@ CREATE TABLE `ukuran_barang` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -514,7 +535,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `kode_ky` varchar(10) NOT NULL,
+  `nama` varchar(100) NOT NULL,
   `alamat` text DEFAULT NULL,
   `noktp` varchar(40) NOT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -528,9 +549,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `kode_ky`, `alamat`, `noktp`, `deleted_at`, `recovered_at`, `otoritas`, `created_at`, `updated_at`) VALUES
+INSERT INTO `users` (`id`, `username`, `password`, `nama`, `alamat`, `noktp`, `deleted_at`, `recovered_at`, `otoritas`, `created_at`, `updated_at`) VALUES
 (234, 'delby', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'delby', NULL, '', '2025-07-07 05:46:54', '2025-07-07 05:46:46', 'T', '2025-07-05 14:20:16', '2025-07-07 05:46:54'),
-(909, 'geni1819', '$2y$10$yCVdmEq9i2kd62zm98/6X.I/ichcTL/s/ePbIL4zNAHrUJ9Sm6tOK', 'geni', 'canggu', '32534535434534', NULL, NULL, NULL, '2025-07-05 14:20:16', '2025-07-12 16:04:24'),
+(909, 'geni1819', '$2y$10$yCVdmEq9i2kd62zm98/6X.I/ichcTL/s/ePbIL4zNAHrUJ9Sm6tOK', 'Genius Hartono', 'canggu', '32534535434534', NULL, NULL, NULL, '2025-07-05 14:20:16', '2025-07-12 19:14:47'),
 (910, 'test1819', 'Genius1819', 'test', 'Canggu', '9727312873218312', '2025-07-07 04:29:52', NULL, 'T', '2025-07-05 14:34:12', '2025-07-07 04:29:52'),
 (911, 'yono1819', '$2y$10$gRiHXmoawoyrbXpCeWcR.ObcuEAkH/TgbSy3IdxEYKl5xIIYzNrwu', 'yono', 'buduk', '', '2025-07-12 08:22:00', NULL, NULL, '2025-07-09 03:34:37', '2025-07-12 16:22:00'),
 (912, 'budi123', '$2y$10$kXkZA9UcGmuATZjoX5RpZuh6PO3xz/zyg3YuFJ/A4HaWfnzwUCKUG', 'budi', 'canggu', '', '2025-07-12 08:22:08', '2025-07-09 03:47:36', NULL, '2025-07-09 03:37:25', '2025-07-12 16:22:08'),
@@ -538,7 +559,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `kode_ky`, `alamat`, `noktp`,
 (914, 'tono123', '$2y$10$JNP1mOPI1U.ZlA.HRXHOQOYfpHla3/n2OEWRlDHczcnbt47ouzruG', 'tono', 'sfewfwe', '', '2025-07-12 08:27:56', NULL, NULL, '2025-07-09 03:42:13', '2025-07-12 16:27:56'),
 (918, 'babi1819', '$2y$10$x9hUob.AJi82gLlO6ghRfeURyawWXWpoVCT5j6OLDqi50wmqojq6.', 'babi', 'canggu', '42372397843928742', '2025-07-12 06:43:31', NULL, NULL, '2025-07-12 14:38:01', '2025-07-12 14:43:31'),
 (919, 'babi1819', '$2y$10$tiXdrlRlGa5bxJNOiESQTeLSvSWOPbXjHBn1hEMNY6gmDsPJtCOcm', 'babi', 'canggu', '42372397843928742', '2025-07-12 06:43:31', NULL, NULL, '2025-07-12 14:38:02', '2025-07-12 14:49:45'),
-(920, 'rani123', '$2y$10$.HqjCYLqGA87L7w6AkxUPOGY5xPtjGg.GvZw5U4Z6KRyaTYNuKMA2', 'rani', 'canggu', '23949328492834', NULL, NULL, NULL, '2025-07-12 14:48:00', '2025-07-12 14:48:00');
+(920, 'test123', '$2y$10$.HqjCYLqGA87L7w6AkxUPOGY5xPtjGg.GvZw5U4Z6KRyaTYNuKMA2', 'Testing', 'canggu', '23949328492834', NULL, NULL, NULL, '2025-07-12 14:48:00', '2025-07-12 19:15:13');
 
 -- --------------------------------------------------------
 
@@ -566,7 +587,8 @@ INSERT INTO `user_departments` (`id`, `user_id`, `department_id`, `deleted_at`) 
 (12, 909, 3, NULL),
 (13, 920, 1, NULL),
 (14, 920, 2, NULL),
-(15, 920, 3, NULL);
+(15, 920, 3, NULL),
+(16, 909, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -579,7 +601,7 @@ CREATE TABLE `voltase` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -599,7 +621,7 @@ CREATE TABLE `warna_bibir` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -619,7 +641,7 @@ CREATE TABLE `warna_body` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -639,7 +661,7 @@ CREATE TABLE `warna_sinar` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `otoritas` varchar(100) DEFAULT NULL,
-  `kode_ky` varchar(20) DEFAULT NULL,
+  `nama_ky` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
@@ -821,7 +843,7 @@ ALTER TABLE `warna_sinar`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -833,7 +855,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `daya`
 --
 ALTER TABLE `daya`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -845,7 +867,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `dimensi`
 --
 ALTER TABLE `dimensi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `fiting`
@@ -857,7 +879,7 @@ ALTER TABLE `fiting`
 -- AUTO_INCREMENT for table `gondola`
 --
 ALTER TABLE `gondola`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `jenis`
@@ -947,7 +969,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_departments`
 --
 ALTER TABLE `user_departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `voltase`

@@ -1,0 +1,5 @@
+/* Membuat semua icon FontAwesome lebih tebal dan opacity penuh */
+.fa, [class^="fa-"], [class*=" fa-"] {
+    font-weight: 900 !important;
+    opacity: 1 !important;
+}

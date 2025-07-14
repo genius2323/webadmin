@@ -1,3 +1,73 @@
+@media (max-width: 576px) {
+  .app-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+  .app-footer-left, .app-footer-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .app-footer-left ul,
+  .app-footer-right ul {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+.app-main__inner,
+.app-content {
+  min-height: 100vh;
+  padding-bottom: 70px;
+}
+/* Pastikan footer selalu di bawah layar */
+.app-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+.app-content {
+  min-height: calc(100vh - 60px); /* 60px = tinggi footer */
+}
+@media (max-width: 576px) {
+  .app-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  .app-wrapper-footer {
+    min-height: 60px;
+  }
+  .app-content {
+    padding-bottom: 70px !important;
+  }
+}
+/* Pastikan header user info selalu tampil di layar kecil */
+/* Footer selalu di bawah layar */
+.app-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+@media (max-width: 576px) {
+  .app-header-right {
+    display: flex !important;
+    align-items: center !important;
+  }
+  .widget-content-left.header-user-info {
+    display: flex !important;
+    gap: 10px !important;
+  }
+}
 @charset "UTF-8";
 .border-primary {
   border-color: #3f6ad8;
