@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 14, 2025 at 02:09 AM
+-- Generation Time: Jul 15, 2025 at 02:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -105,7 +105,8 @@ CREATE TABLE `daya` (
 INSERT INTO `daya` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
 (1, '100W', '', NULL, NULL, '2025-07-10 01:04:20', '2025-07-10 01:04:20', NULL, NULL, NULL, 'automatic'),
 (2, '200W', '', NULL, 'Genius Hartono', '2025-07-12 22:07:20', '2025-07-12 22:07:20', NULL, NULL, NULL, 'automatic'),
-(3, '300W', '', NULL, 'Genius Hartono', '2025-07-12 23:03:02', '2025-07-12 23:03:02', NULL, NULL, NULL, 'automatic');
+(3, '300W', '', NULL, 'Genius Hartono', '2025-07-12 23:03:02', '2025-07-12 23:03:02', NULL, NULL, NULL, 'automatic'),
+(4, '250W', '', NULL, 'Genius Hartono', '2025-07-15 00:23:16', '2025-07-15 00:23:16', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
 
@@ -160,7 +161,8 @@ INSERT INTO `dimensi` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `crea
 (6, '20M', NULL, NULL, 'Genius Hartono', '2025-07-14 00:27:38', '2025-07-14 00:27:38', NULL, NULL, NULL, 'automatic'),
 (7, '30M', NULL, NULL, 'Genius Hartono', '2025-07-14 00:35:37', '2025-07-14 00:35:37', NULL, NULL, NULL, 'automatic'),
 (8, '30M', NULL, NULL, 'Genius Hartono', '2025-07-14 00:37:10', '2025-07-14 00:37:10', NULL, NULL, NULL, 'automatic'),
-(9, '30M', NULL, NULL, 'Genius Hartono', '2025-07-14 00:47:09', '2025-07-14 00:47:09', NULL, NULL, NULL, 'automatic');
+(9, '30M', NULL, NULL, 'Genius Hartono', '2025-07-14 00:47:09', '2025-07-14 00:47:09', NULL, NULL, NULL, 'automatic'),
+(10, '20M', NULL, NULL, 'Genius Hartono', '2025-07-15 00:23:31', '2025-07-15 00:23:31', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
 
@@ -181,6 +183,13 @@ CREATE TABLE `fiting` (
   `batas_tanggal_sistem` date DEFAULT NULL,
   `mode_batas_tanggal` varchar(20) DEFAULT 'automatic'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fiting`
+--
+
+INSERT INTO `fiting` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
+(1, 'KOTAK', NULL, NULL, 'Genius Hartono', '2025-07-15 00:24:25', '2025-07-15 00:24:25', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
 
@@ -207,7 +216,8 @@ CREATE TABLE `gondola` (
 --
 
 INSERT INTO `gondola` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
-(1, 'RAK A', NULL, NULL, 'Genius Hartono', '2025-07-14 01:02:35', '2025-07-14 01:02:35', NULL, NULL, NULL, 'automatic');
+(1, 'RAK A', NULL, NULL, 'Genius Hartono', '2025-07-14 01:02:35', '2025-07-14 01:02:35', NULL, NULL, NULL, 'automatic'),
+(2, 'RAK B', NULL, NULL, 'Genius Hartono', '2025-07-15 00:25:08', '2025-07-15 00:25:08', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
 
@@ -228,6 +238,14 @@ CREATE TABLE `jenis` (
   `deleted_at` datetime DEFAULT NULL,
   `recovered_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jenis`
+--
+
+INSERT INTO `jenis` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `batas_tanggal_sistem`, `mode_batas_tanggal`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`) VALUES
+(1, '', NULL, NULL, 'Genius Hartono', NULL, 'automatic', '2025-07-15 00:25:26', '2025-07-15 00:25:26', NULL, NULL),
+(2, 'SPEAKER AKTIF', NULL, NULL, 'Genius Hartono', NULL, 'automatic', '2025-07-15 00:28:49', '2025-07-15 00:28:49', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -254,7 +272,8 @@ CREATE TABLE `jumlah_mata` (
 --
 
 INSERT INTO `jumlah_mata` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
-(1, 'TIGA MATA', '', NULL, NULL, '2025-07-10 01:33:09', '2025-07-10 01:33:09', NULL, NULL, NULL, 'automatic');
+(1, 'TIGA MATA', '', NULL, NULL, '2025-07-10 01:33:09', '2025-07-10 01:33:09', NULL, NULL, NULL, 'automatic'),
+(3, 'DUA MATA', NULL, NULL, 'Genius Hartono', '2025-07-15 00:40:26', '2025-07-15 00:40:26', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
 
@@ -275,6 +294,13 @@ CREATE TABLE `kaki` (
   `batas_tanggal_sistem` date DEFAULT NULL,
   `mode_batas_tanggal` varchar(20) DEFAULT 'automatic'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kaki`
+--
+
+INSERT INTO `kaki` (`id`, `name`, `description`, `otoritas`, `nama_ky`, `created_at`, `updated_at`, `deleted_at`, `recovered_at`, `batas_tanggal_sistem`, `mode_batas_tanggal`) VALUES
+(2, 'KAKI TIGA', NULL, NULL, 'Genius Hartono', '2025-07-15 00:43:12', '2025-07-15 00:43:12', NULL, NULL, NULL, 'automatic');
 
 -- --------------------------------------------------------
 
@@ -855,7 +881,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `daya`
 --
 ALTER TABLE `daya`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -867,37 +893,37 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `dimensi`
 --
 ALTER TABLE `dimensi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `fiting`
 --
 ALTER TABLE `fiting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `gondola`
 --
 ALTER TABLE `gondola`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `jenis`
 --
 ALTER TABLE `jenis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `jumlah_mata`
 --
 ALTER TABLE `jumlah_mata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kaki`
 --
 ALTER TABLE `kaki`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `merk`
