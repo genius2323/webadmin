@@ -24,6 +24,13 @@ $routes->get('/logout', 'Auth::logout');
 // Jika belum login, akan otomatis dilempar ke halaman /login.
 // =================================================================
 $routes->group('', ['filter' => 'auth'], static function ($routes) {
+    // Rute untuk batas tanggal sistem
+    $routes->get('batas-tanggal', 'BatasTanggal::index');
+    $routes->post('batas-tanggal/update', 'BatasTanggal::update');
+
+    // Rute untuk penjualan
+    $routes->get('penjualan', 'Penjualan::index');
+    $routes->post('penjualan/simpan', 'Penjualan::simpan');
     
     // Rute untuk dashboard setelah login berhasil
     $routes->get('dashboard', 'Dashboard::index');
@@ -171,4 +178,8 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('masterwarnasinar/edit/(:num)', 'MasterWarnaSinar::edit/$1');
     $routes->post('masterwarnasinar/update/(:num)', 'MasterWarnaSinar::update/$1');
     $routes->post('masterwarnasinar/delete/(:num)', 'MasterWarnaSinar::delete/$1');
+
+    // Rute AJAX untuk penjualan
+    $routes->post('penjualan/book_nota', 'Penjualan::book_nota');
+    $routes->post('penjualan/add_item', 'Penjualan::add_item');
 });

@@ -28,6 +28,13 @@
     <!-- Memuat file CSS utama dari folder /public -->
     <link href="<?= base_url('assets/css/base.css') ?>" rel="stylesheet">
     <link href="<?= base_url('desain/assets/css/fa-bold-icons.css') ?>" rel="stylesheet">
+    <style>
+        .app-sidebar.sidebar-shadow .scrollbar-sidebar {
+            height: calc(100vh - 80px); /* Sesuaikan 80px dengan tinggi header Anda jika perlu */
+            overflow-y: auto;
+        }
+    </style>
+
     <!-- JQuery dan vendor JS -->
     <script src="<?= base_url('assets/js/vendors/jquery-3.4.0.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/vendors/metismenu.js') ?>"></script>
@@ -65,15 +72,16 @@
             <?= $this->include('layout/sidebar') ?>
 
             <div class="app-main__outer">
-                <div class="app-main__inner app-content">
-                    <!-- KONTEN UTAMA HALAMAN DIMUAT DI SINI -->
-                    <?= $this->renderSection('content') ?>
-                </div>
-
-                <!-- Menyisipkan Footer -->
-                <?= $this->include('layout/footer') ?>
+                <div class="main-content">
+                    <div class="app-main__inner app-content">
+                        <!-- KONTEN UTAMA HALAMAN DIMUAT DI SINI -->
+                        <?= $this->renderSection('content') ?>
+                    </div>
+                </div>                
             </div>
         </div>
+        <!-- Menyisipkan Footer -->
+                <?= $this->include('layout/footer') ?>
     </div>
 
     <!-- Memuat file Javascript di akhir body -->

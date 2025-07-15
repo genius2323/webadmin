@@ -1,3 +1,20 @@
+.app-footer .container-fluid {
+  display: block !important;
+  width: 100%;
+  padding-right: 32px;
+  padding-left: 32px;
+  margin: 0 auto;
+}
+@media (max-width: 767.98px) {
+  .sidebar-mobile-open .app-sidebar {
+    overflow-y: auto !important;
+    height: 100vh !important;
+  }
+  .sidebar-mobile-open .app-sidebar .scrollbar-sidebar {
+    overflow-y: auto !important;
+    height: 100vh !important;
+  }
+}
 @media (max-width: 576px) {
   .app-footer__inner {
     flex-direction: column;
@@ -20,17 +37,21 @@
   padding-bottom: 70px;
 }
 /* Pastikan footer selalu di bawah layar */
+/* Footer tidak fixed, biar tidak menindih konten */
 .app-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  position: relative;
   width: 100%;
   z-index: 100;
   background: #fff;
   box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  min-height: unset;
+}
 }
 .app-content {
-  min-height: calc(100vh - 60px); /* 60px = tinggi footer */
+  min-height: 100vh;
+  padding-bottom: 80px; /* pastikan cukup agar konten tidak tertutup footer */
 }
 @media (max-width: 576px) {
   .app-footer {
@@ -10397,6 +10418,9 @@ button,
 }
 
 .app-sidebar {
+  overflow-y: auto !important;
+  height: 100vh !important;
+  background: #fff;
   width: 280px;
   display: flex;
   z-index: 11;
@@ -10409,13 +10433,18 @@ button,
   transition: all .2s;
 }
 
-.app-sidebar .app-sidebar__inner {
+
+.app-sidebar .app-sidebar__inner.sidebar-shadow {
   padding: 2px 1.5rem 1.5rem;
+  height: calc(100vh - 80px); /* Sesuaikan 80px dengan tinggi header Anda jika perlu */
+  overflow-y: auto;
 }
 
 .app-sidebar .scrollbar-sidebar {
   z-index: 15;
   width: 100%;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 
 .app-sidebar .app-sidebar-bg {
@@ -10439,6 +10468,8 @@ button,
 
 .app-sidebar.sidebar-shadow {
   box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
+  height: calc(100vh - 80px); /* Sesuaikan 80px dengan tinggi header Anda jika perlu */
+  overflow-y: auto;
 }
 
 .app-sidebar__heading {
@@ -10755,8 +10786,10 @@ button,
 }
 
 .fixed-sidebar .app-sidebar {
-  position: fixed;
-  height: 100vh;
+position: fixed;
+height: 100vh;
+overflow-y: auto;
+  overflow-y: auto;
 }
 
 .fixed-sidebar .app-main .app-main__outer {
@@ -10803,6 +10836,8 @@ button,
   min-width: 80px;
   flex: 0 0 80px;
   z-index: 13;
+  height: calc(100vh - 80px); /* Sesuaikan 80px dengan tinggi header Anda jika perlu */
+  overflow-y: auto;
 }
 
 .closed-sidebar .app-sidebar .app-sidebar__inner .app-sidebar__heading {
@@ -10848,8 +10883,9 @@ button,
 }
 
 .closed-sidebar .app-sidebar:hover {
-  flex: 0 0 280px !important;
-  width: 280px !important;
+flex: 0 0 280px !important;
+width: 280px !important;
+overflow-y: auto !important;
 }
 
 .closed-sidebar .app-sidebar:hover .app-sidebar__inner .app-sidebar__heading {
@@ -10900,7 +10936,7 @@ button,
 .closed-sidebar:not(.sidebar-mobile-open) .app-sidebar:hover .scrollbar-sidebar {
   position: absolute;
   height: 100%;
-  overflow: hidden !important;
+  overflow-y: auto !important;
 }
 
 .closed-sidebar:not(.closed-sidebar-mobile) .app-header .app-header__logo {
@@ -11071,12 +11107,12 @@ button,
 }
 
 .app-footer {
-  height: 60px;
+  height: 40px;
 }
 
 .app-footer .app-footer__inner {
   padding: 0 1.5rem 0 0.75rem;
-  height: 60px;
+  height: 40px;
   display: flex;
   align-content: center;
   align-items: center;
@@ -43104,3 +43140,11 @@ span.multiselect-native-select select {
 .after-img {
   max-width: 100%;
 }
+.after-img {
+  max-width: 100%;
+}
+
+.scrollbar-sidebar.sidebar-shadow {
+  height: calc(100vh - 60px); /* 100% tinggi viewport dikurangi tinggi header (60px) */
+  overflow-y: auto; /* Tampilkan scrollbar jika konten lebih panjang dari tinggi yang ditentukan */
+}          

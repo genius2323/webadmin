@@ -30,7 +30,7 @@ class MasterVoltase extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_voltase' => $this->request->getVar('nama_voltase'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];
@@ -53,7 +53,7 @@ class MasterVoltase extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_voltase' => $this->request->getVar('nama_voltase'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];

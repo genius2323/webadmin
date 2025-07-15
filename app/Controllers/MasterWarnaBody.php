@@ -30,7 +30,7 @@ class MasterWarnaBody extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_warnabody' => $this->request->getVar('nama_warnabody'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];
@@ -53,7 +53,7 @@ class MasterWarnaBody extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_warnabody' => $this->request->getVar('nama_warnabody'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];

@@ -30,7 +30,7 @@ class MasterSatuan extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_satuan' => $this->request->getVar('nama_satuan'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];
@@ -53,7 +53,7 @@ class MasterSatuan extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_satuan' => $this->request->getVar('nama_satuan'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];

@@ -48,6 +48,18 @@
                             Transaksi
                         </a>
                     </li>
+                    <li>
+                        <a href="<?= site_url('penjualan') ?>" class="<?= $uri->getSegment(1) == 'penjualan' ? 'mm-active' : '' ?>">
+                            <i class="metismenu-icon fa fa-shopping-cart"></i>
+                            Penjualan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('batas-tanggal') ?>" class="<?= $uri->getSegment(1) == 'batas-tanggal' ? 'mm-active' : '' ?>">
+                            <i class="metismenu-icon fa fa-calendar"></i>
+                            Batas Tanggal Sistem
+                        </a>
+                    </li>
                 <?php elseif ($departmentId == 2): // Backoffice ?>
                     <?php $uri = service('uri'); ?>
                     <li class="app-sidebar__heading">Backoffice Menu</li>
@@ -72,6 +84,13 @@
                             Dashboard General
                         </a>
                     </li>
+                    <li>
+                        <a href="<?= site_url('penjualan') ?>" class="<?= $uri->getSegment(1) == 'penjualan' ? 'mm-active' : '' ?>">
+                            <i class="metismenu-icon fa fa-shopping-cart"></i>
+                            Penjualan
+                        </a>
+                    </li>
+                    
                     <li class="app-sidebar__heading">Master</li>
                     <li>
                         <a href="#" class="<?= $uri->getSegment(1) == 'user' ? 'mm-active' : '' ?>">
@@ -161,7 +180,11 @@
                         <a href="<?= site_url('/') ?>" class="<?= $uri->getSegment(1) == '' ? 'mm-active' : '' ?>">
                             <i class="metismenu-icon pe-7s-rocket"></i>
                             Otoritas
-                        </a>
+                        </a>                        
+                        <a href="<?= site_url('batas-tanggal') ?>" class="<?= $uri->getSegment(1) == 'batas-tanggal' ? 'mm-active' : '' ?>">
+                            <i class="metismenu-icon fa fa-calendar"></i>
+                            Batas Tanggal Sistem
+                        </a>                    
                     </li>               
                     
                 <?php else: // Default ?>

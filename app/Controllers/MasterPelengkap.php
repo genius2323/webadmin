@@ -30,7 +30,7 @@ class MasterPelengkap extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_pelengkap' => $this->request->getVar('nama_pelengkap'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];
@@ -53,7 +53,7 @@ class MasterPelengkap extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_pelengkap' => $this->request->getVar('nama_pelengkap'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];
