@@ -43,13 +43,15 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('masterkategori/edit/(:num)', 'MasterKategori::edit/$1');
     $routes->post('masterkategori/update/(:num)', 'MasterKategori::update/$1');
     $routes->get('masterkategori/delete/(:num)', 'MasterKategori::delete/$1');
-    // Rute untuk master daya
+
+    // --- Master Daya Routes ---
     $routes->get('masterdaya', 'MasterDaya::index');
     $routes->get('masterdaya/create', 'MasterDaya::create');
-    $routes->post('masterdaya/store', 'MasterDaya::store');
+    $routes->post('masterdaya/save', 'MasterDaya::save'); // Rute untuk memperbaiki error 404
     $routes->get('masterdaya/edit/(:num)', 'MasterDaya::edit/$1');
     $routes->post('masterdaya/update/(:num)', 'MasterDaya::update/$1');
-    $routes->get('masterdaya/delete/(:num)', 'MasterDaya::delete/$1');
+    $routes->get('masterdaya/delete/(:num)', 'MasterDaya::delete/$1'); // Asumsi delete via link GET
+
     // Rute untuk master dimensi
     $routes->get('masterdimensi', 'MasterDimensi::index');
     $routes->get('masterdimensi/create', 'MasterDimensi::create');

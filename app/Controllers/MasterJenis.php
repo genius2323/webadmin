@@ -30,12 +30,15 @@ class MasterJenis extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_jenis' => $this->request->getVar('nama_jenis'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];
         $this->masterJenisModel->insert($data);
-        $this->db2->table('jenis')->insert($data);
+        $id = $this->masterJenisModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('jenis')->insert($dataDb2);
         return redirect()->to('/masterjenis')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)
@@ -50,7 +53,7 @@ class MasterJenis extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_jenis' => $this->request->getVar('nama_jenis'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];

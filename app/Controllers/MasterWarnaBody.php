@@ -35,7 +35,10 @@ class MasterWarnaBody extends Controller
             'otoritas' => null
         ];
         $this->masterWarnaBodyModel->insert($data);
-        $this->db2->table('warna_body')->insert($data);
+        $id = $this->masterWarnaBodyModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('warna_body')->insert($dataDb2);
         return redirect()->to('/masterwarnabody')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)

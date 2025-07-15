@@ -35,7 +35,10 @@ class MasterWarnaBibir extends Controller
             'otoritas' => null
         ];
         $this->masterWarnaBibirModel->insert($data);
-        $this->db2->table('warna_bibir')->insert($data);
+        $id = $this->masterWarnaBibirModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('warna_bibir')->insert($dataDb2);
         return redirect()->to('/masterwarnabibir')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)

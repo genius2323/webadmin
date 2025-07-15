@@ -35,7 +35,10 @@ class MasterFiting extends Controller
             'otoritas' => null
         ];
         $this->masterFitingModel->insert($data);
-        $this->db2->table('fiting')->insert($data);
+        $id = $this->masterFitingModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('fiting')->insert($dataDb2);
         return redirect()->to('/masterfiting')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)

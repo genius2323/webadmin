@@ -35,7 +35,10 @@ class MasterWarnaSinar extends Controller
             'otoritas' => null
         ];
         $this->masterWarnaSinarModel->insert($data);
-        $this->db2->table('warna_sinar')->insert($data);
+        $id = $this->masterWarnaSinarModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('warna_sinar')->insert($dataDb2);
         return redirect()->to('/masterwarnasinar')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)

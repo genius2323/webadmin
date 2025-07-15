@@ -30,12 +30,15 @@ class MasterJumlahMata extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_jumlahmata' => $this->request->getVar('nama_jumlahmata'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];
         $this->masterJumlahMataModel->insert($data);
-        $this->db2->table('jumlah_mata')->insert($data);
+        $id = $this->masterJumlahMataModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('jumlah_mata')->insert($dataDb2);
         return redirect()->to('/masterjumlahmata')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)
@@ -50,7 +53,7 @@ class MasterJumlahMata extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_jumlahmata' => $this->request->getVar('nama_jumlahmata'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];

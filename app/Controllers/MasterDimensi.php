@@ -35,7 +35,10 @@ class MasterDimensi extends Controller
             'otoritas' => null
         ];
         $this->masterDimensiModel->insert($data);
-        $this->db2->table('dimensi')->insert($data);
+        $id = $this->masterDimensiModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('dimensi')->insert($dataDb2);
         return redirect()->to('/masterdimensi')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)

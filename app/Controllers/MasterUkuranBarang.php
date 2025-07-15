@@ -35,7 +35,10 @@ class MasterUkuranBarang extends Controller
             'otoritas' => null
         ];
         $this->masterUkuranBarangModel->insert($data);
-        $this->db2->table('ukuran_barang')->insert($data);
+        $id = $this->masterUkuranBarangModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('ukuran_barang')->insert($dataDb2);
         return redirect()->to('/masterukuranbarang')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)

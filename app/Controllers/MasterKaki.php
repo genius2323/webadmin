@@ -30,12 +30,15 @@ class MasterKaki extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_kaki' => $this->request->getVar('nama_kaki'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];
         $this->masterKakiModel->insert($data);
-        $this->db2->table('kaki')->insert($data);
+        $id = $this->masterKakiModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('kaki')->insert($dataDb2);
         return redirect()->to('/masterkaki')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)
@@ -50,7 +53,7 @@ class MasterKaki extends Controller
         $session = session();
         $nama_ky = $session->get('user_nama');
         $data = [
-            'nama_kaki' => $this->request->getVar('nama_kaki'),
+            'name' => $this->request->getVar('name'),
             'nama_ky' => $nama_ky,
             'otoritas' => null
         ];

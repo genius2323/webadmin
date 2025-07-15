@@ -8,7 +8,19 @@ class MasterDaya extends BaseController
     public function index()
     {
         $model = new MasterDayaModel();
-        $data['data'] = $model->where('deleted_at', null)->findAll();
+        $keyword = $this->request->getVar('keyword');
+
+        if ($keyword) {
+            $dayaData = $model->like('name', $keyword)->where('deleted_at', null)->findAll();
+        } else {
+            $dayaData = $model->where('deleted_at', null)->findAll();
+        }
+
+        $data = [
+            'title' => 'Master Daya',
+            'daya'  => $dayaData,
+            'keyword' => $keyword
+        ];
         return view('master_daya/index', $data);
     }
 
@@ -17,14 +29,14 @@ class MasterDaya extends BaseController
         return view('master_daya/create');
     }
 
-    public function store()
+    public function save()
     {
         $model = new MasterDayaModel();
         $db2 = \Config\Database::connect('db2');
         $nama_ky = session()->get('user_nama');
         $data = [
-            'name' => $this->request->getPost('name'),
-            'description' => $this->request->getPost('description'),
+            'name' => $this->request->getVar('name'),
+            'description' => $this->request->getVar('description'),
             'otoritas' => null,
             'nama_ky' => $nama_ky,
         ];
@@ -33,7 +45,7 @@ class MasterDaya extends BaseController
         $dataDb2 = $data;
         $dataDb2['id'] = $id;
         $db2->table('daya')->insert($dataDb2);
-        return redirect()->to('masterdaya')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->to('masterdaya')->with('success', 'Data berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -43,7 +55,7 @@ class MasterDaya extends BaseController
         if (!$dataItem || $dataItem['deleted_at']) {
             return redirect()->to('masterdaya')->with('error', 'Data tidak ditemukan.');
         }
-        return view('master_daya/edit', ['data' => $dataItem]);
+        return view('master_daya/edit', ['daya' => $dataItem]);
     }
 
     public function update($id)
@@ -56,16 +68,14 @@ class MasterDaya extends BaseController
         }
         $nama_ky = session()->get('user_nama');
         $data = [
-            'name' => $this->request->getPost('name'),
-            'description' => $this->request->getPost('description'),
+            'name' => $this->request->getVar('name'),
+            'description' => $this->request->getVar('description'),
             'otoritas' => null,
             'nama_ky' => $nama_ky,
         ];
         $model->update($id, $data);
-        $dataDb2 = $data;
-        $dataDb2['id'] = $id;
-        $db2->table('daya')->where('id', $id)->update($dataDb2);
-        return redirect()->to('masterdaya')->with('success', 'Data berhasil diupdate');
+        $db2->table('daya')->where('id', $id)->update($data);
+        return redirect()->to('masterdaya')->with('success', 'Data berhasil diubah.');
     }
 
     public function delete($id)
@@ -85,6 +95,6 @@ class MasterDaya extends BaseController
             'deleted_at' => date('Y-m-d H:i:s'),
             'nama_ky' => $nama_ky
         ]);
-        return redirect()->to('masterdaya')->with('success', 'Data berhasil dihapus (soft delete) di dua database');
+        return redirect()->to('masterdaya')->with('success', 'Data berhasil dihapus.');
     }
 }

@@ -35,7 +35,10 @@ class MasterMerk extends Controller
             'otoritas' => null
         ];
         $this->masterMerkModel->insert($data);
-        $this->db2->table('merk')->insert($data);
+        $id = $this->masterMerkModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('merk')->insert($dataDb2);
         return redirect()->to('/mastermerk')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)

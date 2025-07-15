@@ -35,7 +35,10 @@ class MasterSatuan extends Controller
             'otoritas' => null
         ];
         $this->masterSatuanModel->insert($data);
-        $this->db2->table('satuan')->insert($data);
+        $id = $this->masterSatuanModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('satuan')->insert($dataDb2);
         return redirect()->to('/mastersatuan')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)

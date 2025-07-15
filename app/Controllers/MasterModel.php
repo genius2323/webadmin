@@ -35,7 +35,10 @@ class MasterModel extends Controller
             'otoritas' => null
         ];
         $this->masterModelModel->insert($data);
-        $this->db2->table('model')->insert($data);
+        $id = $this->masterModelModel->getInsertID();
+        $dataDb2 = $data;
+        $dataDb2['id'] = $id;
+        $this->db2->table('model')->insert($dataDb2);
         return redirect()->to('/mastermodel')->with('success', 'Data berhasil ditambahkan.');
     }
     public function edit($id)
