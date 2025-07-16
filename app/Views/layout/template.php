@@ -33,6 +33,17 @@
             height: calc(100vh - 80px); /* Sesuaikan 80px dengan tinggi header Anda jika perlu */
             overflow-y: auto;
         }
+        /* Fix modal always on top */
+        .modal {
+            z-index: 20000 !important;
+        }
+        .modal-backdrop {
+            z-index: 19999 !important;
+        }
+        /* Prevent parent overflow from hiding modal */
+        .app-main__outer, .main-content, .app-main__inner, .app-content, .main-card, .card-body {
+            overflow: visible !important;
+        }
     </style>
 
     <!-- JQuery dan vendor JS -->
@@ -84,8 +95,11 @@
                 <?= $this->include('layout/footer') ?>
     </div>
 
-    <!-- Memuat file Javascript di akhir body -->
+</script>
+    <!-- Memuat Bootstrap JS agar modal bisa berjalan -->
+    <script src="<?= base_url('assets/js/vendors/bootstrap.bundle.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/js/scripts-init/app.js') ?>"></script>
 </body>
 
+    <?php if (isset($modalSalesHtml)) echo $modalSalesHtml; ?>
 </html>

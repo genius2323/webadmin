@@ -23,7 +23,10 @@ class MasterKaki extends Controller
     }
     public function create()
     {
-        return view('master_kaki/create');
+        $data = [
+            'title' => 'Tambah Kaki'
+        ];
+        return view('master_kaki/create', $data);
     }
     public function save()
     {
@@ -44,7 +47,8 @@ class MasterKaki extends Controller
     public function edit($id)
     {
         $data = [
-            'kaki' => $this->masterKakiModel->find($id)
+            'kaki' => $this->masterKakiModel->find($id),
+            'title' => 'Edit Kaki'
         ];
         return view('master_kaki/edit', $data);
     }

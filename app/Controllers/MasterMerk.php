@@ -23,7 +23,10 @@ class MasterMerk extends Controller
     }
     public function create()
     {
-        return view('master_merk/create');
+        $data = [
+            'title' => 'Tambah Merk'
+        ];
+        return view('master_merk/create', $data);
     }
     public function save()
     {
@@ -44,7 +47,8 @@ class MasterMerk extends Controller
     public function edit($id)
     {
         $data = [
-            'merk' => $this->masterMerkModel->find($id)
+            'merk' => $this->masterMerkModel->find($id),
+            'title' => 'Edit Merk'
         ];
         return view('master_merk/edit', $data);
     }

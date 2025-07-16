@@ -24,43 +24,47 @@
 <?php endif; ?>
 <div class="main-card mb-3 card">
     <div class="card-body">
-        <form class="form-inline mb-3 d-flex" method="get" action="" style="gap:10px;">
-            <input type="text" name="keyword" class="form-control" placeholder="Cari nama atau user" value="<?= esc($keyword) ?>">
+        <form method="get" action="" class="mb-3 d-flex" style="gap:10px;">
+            <input type="text" name="search" class="form-control" placeholder="Cari nama..." value="<?= esc($_GET['search'] ?? '') ?>">
             <button type="submit" class="btn btn-info">Cari</button>
         </form>
-        <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead class="thead-light">
+        <table class="table table-hover table-striped table-bordered table-sm" style="font-size:0.95em;">
+            <thead>
                 <tr>
-                    <th style="width:5%">No</th>
-                    <th>Nama Warna Sinar</th>
-                    <th>Otoritas</th>
-                    <th>Deskripsi</th>
-                    <th style="width:15%" class="text-center">Aksi</th>
+                    <th class="text-center">Nama</th>
+                    <th class="text-center">Deskripsi</th>
+                    <th class="text-center">Otoritas</th>
+                    <th class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <?php $i = 1; foreach ($warnasinar as $w) : ?>
-                    <tr>
-                        <td><?= $i++ ?></td>
-                        <td><?= esc($w['name']) ?></td>
-                        <td class="text-center">
-                            <?php if ($w['otoritas'] === null): ?>
-                                <span class="badge badge-secondary">Belum Diotorisasi</span>
-                            <?php elseif ($w['otoritas'] === 'T'): ?>
-                                <span class="badge badge-success">Terverifikasi</span>
-                            <?php else: ?>
-                                <span class="badge badge-danger">Ditolak</span>
-                            <?php endif; ?>
-                        </td>
-                        <td><?= esc($w['description'] ?? '-') ?></td>
-                        <td class="text-center">
-                            <a href="<?= base_url('masterwarnasinar/edit/'.$w['id']) ?>" class="btn btn-warning btn-sm<?= $w['otoritas'] === null ? ' disabled' : '' ?>">Edit</a>
-                            <form action="<?= base_url('masterwarnasinar/delete/'.$w['id']) ?>" method="post" class="d-inline" onsubmit="return confirm('Yakin hapus?')">
-                                <button type="submit" class="btn btn-danger btn-sm<?= $w['otoritas'] === null ? ' disabled' : '' ?>">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
+                <?php foreach ($warnasinar as $row): ?>
+                <?php
+                    $search = $_GET['search'] ?? '';
+                    if ($search && stripos($row['name'], $search) === false) continue;
+                ?>
+                <tr>
+                    <td><?= esc($row['name']) ?></td>
+                    <td><?= esc($row['description'] ?? '-') ?></td>
+                    <td class="text-center">
+                        <?php if ($row['otoritas'] === 'T'): ?>
+                            <span class="badge badge-success">Sudah Otorisasi</span>
+                        <?php else: ?>
+                            <span class="badge badge-secondary">Belum Otorisasi</span>
+                        <?php endif; ?>
+                    </td>
+                    <td class="d-flex justify-content-center align-items-center" style="gap:3px; min-width:70px;">
+                        <a href="<?= site_url('masterwarnasinar/edit/' . $row['id']) ?>" class="btn btn-sm btn-warning" title="Edit"
+                           <?php if (empty($row['otoritas']) || $row['otoritas'] !== 'T'): ?>disabled style="pointer-events:none;opacity:0.6;"<?php endif; ?>>
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="<?= site_url('masterwarnasinar/delete/' . $row['id']) ?>" class="btn btn-sm btn-danger" title="Hapus"
+                           <?php if (empty($row['otoritas']) || $row['otoritas'] !== 'T'): ?>disabled style="pointer-events:none;opacity:0.6;"<?php endif; ?>
+                           onclick="return confirm('Yakin ingin menghapus data ini?')">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>

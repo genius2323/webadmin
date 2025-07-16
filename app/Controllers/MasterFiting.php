@@ -23,7 +23,10 @@ class MasterFiting extends Controller
     }
     public function create()
     {
-        return view('master_fiting/create');
+        $data = [
+            'title' => 'Tambah Fiting'
+        ];
+        return view('master_fiting/create', $data);
     }
     public function save()
     {
@@ -44,7 +47,8 @@ class MasterFiting extends Controller
     public function edit($id)
     {
         $data = [
-            'fiting' => $this->masterFitingModel->find($id)
+            'fiting' => $this->masterFitingModel->find($id),
+            'title' => 'Edit Fiting'
         ];
         return view('master_fiting/edit', $data);
     }

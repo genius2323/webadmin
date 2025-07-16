@@ -26,7 +26,10 @@ class MasterDaya extends BaseController
 
     public function create()
     {
-        return view('master_daya/create');
+        $data = [
+            'title' => 'Tambah Daya'
+        ];
+        return view('master_daya/create', $data);
     }
 
     public function save()
@@ -55,7 +58,11 @@ class MasterDaya extends BaseController
         if (!$dataItem || $dataItem['deleted_at']) {
             return redirect()->to('masterdaya')->with('error', 'Data tidak ditemukan.');
         }
-        return view('master_daya/edit', ['daya' => $dataItem]);
+        $data = [
+            'daya' => $dataItem,
+            'title' => 'Edit Daya'
+        ];
+        return view('master_daya/edit', $data);
     }
 
     public function update($id)

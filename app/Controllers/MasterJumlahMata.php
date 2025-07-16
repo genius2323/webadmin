@@ -23,7 +23,10 @@ class MasterJumlahMata extends Controller
     }
     public function create()
     {
-        return view('master_jumlahmata/create');
+        $data = [
+            'title' => 'Tambah Jumlah Mata'
+        ];
+        return view('master_jumlahmata/create', $data);
     }
     public function save()
     {
@@ -44,7 +47,8 @@ class MasterJumlahMata extends Controller
     public function edit($id)
     {
         $data = [
-            'jumlahmata' => $this->masterJumlahMataModel->find($id)
+            'jumlahmata' => $this->masterJumlahMataModel->find($id),
+            'title' => 'Edit Jumlah Mata'
         ];
         return view('master_jumlahmata/edit', $data);
     }

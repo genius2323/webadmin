@@ -9,6 +9,27 @@
         <h4 class="mb-0"><i class="fa fa-shopping-cart me-2"></i>  Tambah Penjualan</h4>
       </div>
       <div class="card-body">
+        <?php if (session()->getFlashdata('success')): ?>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= session('success') ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('error')): ?>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= session('error') ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('errors')): ?>
+          <div class="alert alert-danger">
+            <ul class="mb-0">
+              <?php foreach (session('errors') as $err): ?>
+                <li><?= esc($err) ?></li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        <?php endif; ?>
         <form action="<?= base_url('penjualan/create') ?>" method="post" autocomplete="off">
           <div class="mb-3">
             <?php
@@ -24,7 +45,7 @@
                             ?>
                             <input type="text" name="tanggal_nota" id="tanggal_nota" class="form-control"
                                 style="background:#f8f9fa; cursor:pointer; color:#212529;"
-                                value="<?= isset($penjualan) ? date('d/m/Y', strtotime($penjualan['tanggal_nota'])) : date('d/m/Y') ?>"
+                                value="<?= (isset($penjualan) && isset($penjualan['tanggal_nota'])) ? date('d/m/Y', strtotime($penjualan['tanggal_nota'])) : date('d/m/Y') ?>"
                                 required readonly>
                             <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
                             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">

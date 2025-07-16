@@ -20,6 +20,22 @@ $routes->get('/logout', 'Auth::logout');
 // RUTE TERPROTEKSI (WAJIB LOGIN)
 // =================================================================
 $routes->group('', ['filter' => 'auth'], static function ($routes) {
+    // Master Customer
+    $routes->get('mastercustomer', 'MasterCustomer::index');
+    $routes->get('mastercustomer/create', 'MasterCustomer::create');
+    $routes->post('mastercustomer/save', 'MasterCustomer::save');
+    $routes->get('mastercustomer/edit/(:num)', 'MasterCustomer::edit/$1');
+    $routes->post('mastercustomer/update/(:num)', 'MasterCustomer::update/$1');
+    $routes->get('mastercustomer/delete/(:num)', 'MasterCustomer::delete/$1');
+    // Master Sales
+    $routes->get('mastersales', 'MasterSales::index');
+    $routes->get('mastersales/create', 'MasterSales::create');
+    $routes->post('mastersales/save', 'MasterSales::save');
+    $routes->get('mastersales/edit/(:num)', 'MasterSales::edit/$1');
+    $routes->post('mastersales/update/(:num)', 'MasterSales::update/$1');
+    $routes->get('mastersales/delete/(:num)', 'MasterSales::delete/$1');
+    // API untuk modal pilih sales
+    $routes->get('salesapi', 'SalesApi::index');
     // Dashboard
     $routes->get('dashboard', 'Dashboard::index');
 

@@ -23,7 +23,10 @@ class MasterSatuan extends Controller
     }
     public function create()
     {
-        return view('master_satuan/create');
+        $data = [
+            'title' => 'Tambah Satuan'
+        ];
+        return view('master_satuan/create', $data);
     }
     public function save()
     {
@@ -44,7 +47,8 @@ class MasterSatuan extends Controller
     public function edit($id)
     {
         $data = [
-            'satuan' => $this->masterSatuanModel->find($id)
+            'satuan' => $this->masterSatuanModel->find($id),
+            'title' => 'Edit Satuan'
         ];
         return view('master_satuan/edit', $data);
     }

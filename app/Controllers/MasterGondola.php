@@ -23,7 +23,10 @@ class MasterGondola extends Controller
     }
     public function create()
     {
-        return view('master_gondola/create');
+        $data = [
+            'title' => 'Tambah Gondola'
+        ];
+        return view('master_gondola/create', $data);
     }
     public function save()
     {
@@ -49,7 +52,8 @@ class MasterGondola extends Controller
     public function edit($id)
     {
         $data = [
-            'gondola' => $this->masterGondolaModel->find($id)
+            'gondola' => $this->masterGondolaModel->find($id),
+            'title' => 'Edit Gondola'
         ];
         return view('master_gondola/edit', $data);
     }

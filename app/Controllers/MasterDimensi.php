@@ -23,7 +23,10 @@ class MasterDimensi extends Controller
     }
     public function create()
     {
-        return view('master_dimensi/create');
+        $data = [
+            'title' => 'Tambah Dimensi'
+        ];
+        return view('master_dimensi/create', $data);
     }
     public function save()
     {
@@ -44,7 +47,8 @@ class MasterDimensi extends Controller
     public function edit($id)
     {
         $data = [
-            'dimensi' => $this->masterDimensiModel->find($id)
+            'dimensi' => $this->masterDimensiModel->find($id),
+            'title' => 'Edit Dimensi'
         ];
         return view('master_dimensi/edit', $data);
     }

@@ -93,6 +93,18 @@
                     
                     <li class="app-sidebar__heading">Master</li>
                     <li>
+                        <a href="<?= base_url('mastersales') ?>" class="<?= $uri->getSegment(1) == 'mastersales' ? 'mm-active' : '' ?>">
+                            <i class="metismenu-icon pe-7s-id"></i>
+                            Sales / Pegawai
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url('mastercustomer') ?>" class="<?= $uri->getSegment(1) == 'mastercustomer' ? 'mm-active' : '' ?>">
+                            <i class="metismenu-icon pe-7s-users"></i>
+                            Customer
+                        </a>
+                    </li>
+                    <li>
                         <a href="#" class="<?= $uri->getSegment(1) == 'user' ? 'mm-active' : '' ?>">
                             <i class="metismenu-icon pe-7s-users"></i>
                             Manajemen User
@@ -175,7 +187,7 @@
                         </ul>
                     </li>
                     
-                    <li class="app-sidebar__heading">Fasilitas</li>
+                    <li class="app-sidebar__heading">Fasilitas</li>                    
                     <li>
                         <a href="<?= site_url('/') ?>" class="<?= $uri->getSegment(1) == '' ? 'mm-active' : '' ?>">
                             <i class="metismenu-icon pe-7s-rocket"></i>

@@ -9,12 +9,14 @@ class MasterKategori extends BaseController
     {
         $model = new MasterKategoriModel();
         $data['kategori'] = $model->where('deleted_at', null)->findAll();
+        $data['title'] = 'Master Kategori';
         return view('master_kategori/index', $data);
     }
 
     public function create()
     {
-        return view('master_kategori/create');
+        $data['title'] = 'Tambah Kategori';
+        return view('master_kategori/create', $data);
     }
 
     public function store()
@@ -44,7 +46,11 @@ class MasterKategori extends BaseController
         if (!$kategori || $kategori['deleted_at']) {
             return redirect()->to('masterkategori')->with('error', 'Kategori tidak ditemukan.');
         }
-        return view('master_kategori/edit', ['kategori' => $kategori]);
+        $data = [
+            'kategori' => $kategori,
+            'title' => 'Edit Kategori'
+        ];
+        return view('master_kategori/edit', $data);
     }
 
     public function update($id)

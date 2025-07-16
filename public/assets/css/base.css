@@ -1,3 +1,94 @@
+.app-footer .container-fluid {
+  display: block !important;
+  width: 100%;
+  padding-right: 32px;
+  padding-left: 32px;
+  margin: 0 auto;
+}
+@media (max-width: 767.98px) {
+  .sidebar-mobile-open .app-sidebar {
+    overflow-y: auto !important;
+    height: 100vh !important;
+  }
+  .sidebar-mobile-open .app-sidebar .scrollbar-sidebar {
+    overflow-y: auto !important;
+    height: 100vh !important;
+  }
+}
+@media (max-width: 576px) {
+  .app-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+  .app-footer-left, .app-footer-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .app-footer-left ul,
+  .app-footer-right ul {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+.app-main__inner,
+.app-content {
+  min-height: 100vh;
+  padding-bottom: 70px;
+}
+/* Pastikan footer selalu di bawah layar */
+/* Footer tidak fixed, biar tidak menindih konten */
+.app-footer {
+  position: relative;
+  width: 100%;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  min-height: unset;
+}
+}
+.app-content {
+  min-height: 100vh;
+  padding-bottom: 80px; /* pastikan cukup agar konten tidak tertutup footer */
+}
+@media (max-width: 576px) {
+  .app-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  .app-wrapper-footer {
+    min-height: 60px;
+  }
+  .app-content {
+    padding-bottom: 70px !important;
+  }
+}
+/* Pastikan header user info selalu tampil di layar kecil */
+/* Footer selalu di bawah layar */
+.app-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+@media (max-width: 576px) {
+  .app-header-right {
+    display: flex !important;
+    align-items: center !important;
+  }
+  .widget-content-left.header-user-info {
+    display: flex !important;
+    gap: 10px !important;
+  }
+}
 @charset "UTF-8";
 .border-primary {
   border-color: #3f6ad8;
@@ -9991,6 +10082,7 @@ button,
 .app-header__logo .logo-src {
   height: 23px;
   width: 97px;
+  background: url("../images/logo-inverse.png");
 }
 
 .app-header__menu,
@@ -10224,7 +10316,7 @@ button,
 }
 
 .app-header.header-text-light .app-header__logo .logo-src {
-
+  background: url("../assets/images/logo.png");
 }
 
 .app-header.header-text-light .app-header__mobile-menu .hamburger-inner,
@@ -10322,10 +10414,13 @@ button,
 }
 
 .app-header.header-text-dark .app-header__logo .logo-src {
-  
+  background: url("../images/logo-inverse.png");
 }
 
 .app-sidebar {
+  overflow-y: auto !important;
+  height: 100vh !important;
+  background: #fff;
   width: 280px;
   display: flex;
   z-index: 11;
@@ -10338,13 +10433,18 @@ button,
   transition: all .2s;
 }
 
-.app-sidebar .app-sidebar__inner {
+
+.app-sidebar .app-sidebar__inner.sidebar-shadow {
   padding: 2px 1.5rem 1.5rem;
+  height: calc(100vh - 80px); /* Sesuaikan 80px dengan tinggi header Anda jika perlu */
+  overflow-y: auto;
 }
 
 .app-sidebar .scrollbar-sidebar {
   z-index: 15;
   width: 100%;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 
 .app-sidebar .app-sidebar-bg {
@@ -10368,6 +10468,8 @@ button,
 
 .app-sidebar.sidebar-shadow {
   box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
+  height: calc(100vh - 80px); /* Sesuaikan 80px dengan tinggi header Anda jika perlu */
+  overflow-y: auto;
 }
 
 .app-sidebar__heading {
@@ -10477,18 +10579,16 @@ button,
 .vertical-nav-menu i.metismenu-state-icon,
 .vertical-nav-menu i.metismenu-icon {
   text-align: center;
-  width: 38px;
-  height: 38px;
-  line-height: 38px;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
   position: absolute;
-  left: 0;
+  left: 5px;
   top: 50%;
-  margin-top: -19px;
-  font-size: 1.8rem;
-  opacity: 0.7;
-  color: #3f6ad8;
-  filter: drop-shadow(0 1px 2px rgba(63,106,216,0.15));
-  transition: color 300ms, filter 300ms, opacity 300ms;
+  margin-top: -17px;
+  font-size: 1.5rem;
+  opacity: .3;
+  transition: color 300ms;
 }
 
 .vertical-nav-menu i.metismenu-state-icon {
@@ -10603,7 +10703,7 @@ button,
 }
 
 .app-sidebar.sidebar-text-light .app-header__logo .logo-src {
-  
+  background: url("../assets/images/logo.png");
 }
 
 .app-sidebar.sidebar-text-light .app-header__logo .hamburger-inner,
@@ -10686,8 +10786,10 @@ button,
 }
 
 .fixed-sidebar .app-sidebar {
-  position: fixed;
-  height: 100vh;
+position: fixed;
+height: 100vh;
+overflow-y: auto;
+  overflow-y: auto;
 }
 
 .fixed-sidebar .app-main .app-main__outer {
@@ -10734,6 +10836,8 @@ button,
   min-width: 80px;
   flex: 0 0 80px;
   z-index: 13;
+  height: calc(100vh - 80px); /* Sesuaikan 80px dengan tinggi header Anda jika perlu */
+  overflow-y: auto;
 }
 
 .closed-sidebar .app-sidebar .app-sidebar__inner .app-sidebar__heading {
@@ -10779,8 +10883,9 @@ button,
 }
 
 .closed-sidebar .app-sidebar:hover {
-  flex: 0 0 280px !important;
-  width: 280px !important;
+flex: 0 0 280px !important;
+width: 280px !important;
+overflow-y: auto !important;
 }
 
 .closed-sidebar .app-sidebar:hover .app-sidebar__inner .app-sidebar__heading {
@@ -10831,7 +10936,7 @@ button,
 .closed-sidebar:not(.sidebar-mobile-open) .app-sidebar:hover .scrollbar-sidebar {
   position: absolute;
   height: 100%;
-  overflow: hidden !important;
+  overflow-y: auto !important;
 }
 
 .closed-sidebar:not(.closed-sidebar-mobile) .app-header .app-header__logo {
@@ -11002,12 +11107,12 @@ button,
 }
 
 .app-footer {
-  height: 60px;
+  height: 40px;
 }
 
 .app-footer .app-footer__inner {
   padding: 0 1.5rem 0 0.75rem;
-  height: 60px;
+  height: 40px;
   display: flex;
   align-content: center;
   align-items: center;
@@ -19710,12 +19815,13 @@ legend {
 .app-logo {
   height: 23px;
   width: 97px;
-  /* background image removed */
+  background: url("../images/logo-inverse.png");
 }
 
 .app-logo-inverse {
   height: 23px;
-  width: 97px;  
+  width: 97px;
+  background: url("../assets/images/logo.png");
 }
 
 .app-login-box .app-logo {
@@ -43034,3 +43140,11 @@ span.multiselect-native-select select {
 .after-img {
   max-width: 100%;
 }
+.after-img {
+  max-width: 100%;
+}
+
+.scrollbar-sidebar.sidebar-shadow {
+  height: calc(100vh - 60px); /* 100% tinggi viewport dikurangi tinggi header (60px) */
+  overflow-y: auto; /* Tampilkan scrollbar jika konten lebih panjang dari tinggi yang ditentukan */
+}          

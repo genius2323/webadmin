@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-md-6">
                             <p><strong>Status:</strong> <span class="badge badge-secondary"><?= esc(ucfirst($penjualan['status'])); ?></span></p>
-                            <p><strong>Total Harga:</strong> Rp <?= number_format($penjualan['total_harga'], 0, ',', '.'); ?></p>
+                            <p><strong>Total Harga:</strong> Rp <?= number_format($penjualan['grand_total'], 0, ',', '.'); ?></p>
                         </div>
                     </div>
 
