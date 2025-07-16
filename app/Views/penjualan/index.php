@@ -9,7 +9,7 @@
         <h4 class="mb-0"><i class="fa fa-shopping-cart me-2"></i>  Tambah Penjualan</h4>
       </div>
       <div class="card-body">
-        <form action="<?= base_url('penjualan/create') ?>" method="get" autocomplete="off">
+        <form action="<?= base_url('penjualan/create') ?>" method="post" autocomplete="off">
           <div class="mb-3">
             <?php
                             $minDate = '';
@@ -44,15 +44,18 @@
                         </div>
           <div class="mb-3">
             <label for="nomor_nota" class="form-label">Nomor Nota</label>
-            <input type="text" class="form-control" id="nomor_nota" name="nomor_nota" required>
+            <input type="text" class="form-control" id="nomor_nota"
+              placeholder="<?= esc($nomor_nota ?? '-') ?>"
+              readonly style="background:#f8f9fa; cursor:not-allowed;">
+            <input type="hidden" name="nomor_nota" value="<?= esc($nomor_nota ?? '') ?>">
           </div>
           <div class="mb-3">
             <label for="customer" class="form-label">Customer</label>
-            <input type="text" class="form-control" id="customer" name="customer" required>
+            <input type="text" class="form-control" id="customer" name="customer" >
           </div>
           <div class="mb-3">
             <label for="sales" class="form-label">Sales</label>
-            <input type="text" class="form-control" id="sales" name="sales" required>
+            <input type="text" class="form-control" id="sales" name="sales" >
           </div>
           <div class="d-grid gap-2">
             <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-plus me-2"></i>  Tambah Penjualan</button>
