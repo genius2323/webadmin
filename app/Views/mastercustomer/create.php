@@ -196,43 +196,42 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-<?php
-    $modalSalesHtml = <<<HTML
-    <!-- Modal Pilih Sales (mengikuti template bd-example-modal-lg) -->
-    <div class="modal fade bd-example-modal-lg" id="modalSales" tabindex="-1" role="dialog" aria-labelledby="modalSalesLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalSalesLabel">Pilih Sales</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <input type="text" id="searchSales" class="form-control" placeholder="Cari kode/nama sales...">
-            </div>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover" id="tableSalesModal">
-                <thead>
-                  <tr>
-                    <th>Kode</th>
-                    <th>Nama</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Data sales akan diisi via JS -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-          </div>
+
+
+<!-- Modal Pilih Sales (mengikuti template bd-example-modal-lg) -->
+<div class="modal fade bd-example-modal-lg" id="modalSales" tabindex="-1" role="dialog" aria-labelledby="modalSalesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalSalesLabel">Pilih Sales</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" id="searchSales" class="form-control" placeholder="Cari">
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover" id="tableSalesModal">
+            <thead>
+              <tr>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data sales akan diisi via JS -->
+            </tbody>
+          </table>
         </div>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+      </div>
     </div>
-    HTML;
-?>
+  </div>
+</div>
+
 <?= $this->endSection(); ?>

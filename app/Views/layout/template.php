@@ -34,15 +34,23 @@
             overflow-y: auto;
         }
         /* Fix modal always on top */
-        .modal {
-            z-index: 20000 !important;
+        .modal,
+        .modal.show {
+            z-index: 21000 !important;
         }
-        .modal-backdrop {
-            z-index: 19999 !important;
+        .modal-backdrop, .blockOverlay {
+            z-index: 10000 !important;
         }
         /* Prevent parent overflow from hiding modal */
         .app-main__outer, .main-content, .app-main__inner, .app-content, .main-card, .card-body {
             overflow: visible !important;
+        }
+        /* Footer tidak menindih modal */
+        .app-footer {
+            z-index: 100 !important;
+        }
+        body.modal-open .app-footer {
+            z-index: 1 !important;
         }
     </style>
 
@@ -95,7 +103,7 @@
                 <?= $this->include('layout/footer') ?>
     </div>
 
-</script>
+
     <!-- Memuat Bootstrap JS agar modal bisa berjalan -->
     <script src="<?= base_url('assets/js/vendors/bootstrap.bundle.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/js/scripts-init/app.js') ?>"></script>

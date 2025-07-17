@@ -30,7 +30,7 @@
         </span>
     </div>
     <div class="scrollbar-sidebar">
-        <div class="app-sidebar__inner">
+        <div class="app-sidebar__inner" style="padding-right: 15px; padding-left: 15px;">
             <ul class="vertical-nav-menu">
                 <?php $departmentId = session()->get('department_id'); ?>
                 <?php if ($departmentId == 1): // POS ?>

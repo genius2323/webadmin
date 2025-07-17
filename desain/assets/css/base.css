@@ -6009,7 +6009,6 @@ a.close.disabled {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1040;
   width: 100vw;
   height: 100vh;
   background-color: #000;
@@ -6020,7 +6019,7 @@ a.close.disabled {
 }
 
 .modal-backdrop.show, .show.blockOverlay {
-  opacity: 0.5;
+  opacity: 0;
 }
 
 .modal-header {
