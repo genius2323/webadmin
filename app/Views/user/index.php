@@ -28,7 +28,20 @@
     <?php endif; ?>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <table style="width: 100%;" id="userTable" class="table table-hover table-striped table-bordered">
+            <link rel="stylesheet" href="/assets/css/table-responsive-custom.css">
+            <style>
+            @media (max-width: 768px) {
+                .table-responsive-custom {
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                }
+                #userTable {
+                    min-width: 600px;
+                }
+            }
+            </style>
+            <div class="table-responsive-custom">
+            <table style="width: 100%; min-width:600px;" id="userTable" class="table table-hover table-striped table-bordered">
                 <thead>
                     <tr>
                         <th class="text-center">Nama</th>
@@ -68,6 +81,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 <?= $this->endSection() ?>

@@ -71,21 +71,23 @@
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>Nomor</label>
-                            <div style="display:flex;gap:2px;max-width:420px;align-items:center;">
+                            <div class="npwp-nomor-group">
                                 <?php
                                 // Format: 12.345.678.9-003.000 (15 digit, 4 titik, 1 strip)
                                 for($i=0;$i<15;$i++):
                                     if($i>0) {
-                                        if($i==2||$i==5||$i==8) echo '<span style="font-weight:bold;">.</span>';
-                                        if($i==9) echo '<span style="font-weight:bold;">-</span>';
-                                        if($i==12) echo '<span style="font-weight:bold;">.</span>';
+                                        if($i==2||$i==5||$i==8) echo '<span>.</span>';
+                                        if($i==9) echo '<span>-</span>';
+                                        if($i==12) echo '<span>.</span>';
                                     }
                                 ?>
-                                    <input type="text" name="npwp_nomor[]" maxlength="1" pattern="[0-9]" class="form-control text-center" style="width:2.2em;display:inline-block;padding:2px 4px;" autocomplete="off">
+                                    <input type="text" name="npwp_nomor[]" maxlength="1" pattern="[0-9]" class="form-control text-center" autocomplete="off">
                                 <?php endfor; ?>
                             </div>
                         </div>
                     </div>
+</form>
+<link rel="stylesheet" href="<?= base_url('assets/css/npwp-responsive.css') ?>">
                     <div class="form-row mt-2">
                         <div class="form-group col-md-6">
                             <label>Atas Nama</label>

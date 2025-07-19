@@ -31,6 +31,7 @@
                 <input type="text" name="search" class="form-control" placeholder="Cari nama/kode/alamat..." value="<?= esc($_GET['search'] ?? '') ?>">
                 <button type="submit" class="btn btn-info">Cari</button>
             </form>
+            <div class="table-responsive-custom">
             <table style="width: 100%;" id="salesTable" class="table table-hover table-striped table-bordered">
                 <thead>
                     <tr>
@@ -69,6 +70,8 @@
                     <?php endif; ?>
                 </tbody>
             </table>
+            </div>
+            <link rel="stylesheet" href="<?= base_url('assets/css/table-responsive-custom.css') ?>">
         </div>
     </div>
 <?= $this->endSection() ?>

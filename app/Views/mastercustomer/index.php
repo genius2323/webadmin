@@ -31,7 +31,8 @@
             <input type="text" name="search" class="form-control" placeholder="Cari nama customer..." value="<?= esc($_GET['search'] ?? '') ?>">
             <button type="submit" class="btn btn-info">Cari</button>
         </form>
-        <table class="table table-hover table-striped table-bordered table-sm" style="font-size:0.95em;">
+        <div class="table-responsive-custom">
+            <table class="table table-hover table-striped table-bordered table-sm" style="font-size:0.95em;">
             <thead>
                 <tr>
                     <th class="text-center">Kode</th>
@@ -78,6 +79,8 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+        </div>
+        <link rel="stylesheet" href="<?= base_url('assets/css/table-responsive-custom.css') ?>">
     </div>
 </div>
 <?= $this->endSection(); ?>

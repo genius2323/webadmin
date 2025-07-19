@@ -5,16 +5,7 @@
   padding-left: 32px;
   margin: 0 auto;
 }
-@media (max-width: 767.98px) {
-  .sidebar-mobile-open .app-sidebar {
-    overflow-y: auto !important;
-    height: 100vh !important;
-  }
-  .sidebar-mobile-open .app-sidebar .scrollbar-sidebar {
-    overflow-y: auto !important;
-    height: 100vh !important;
-  }
-}
+
 @media (max-width: 576px) {
   .app-footer__inner {
     flex-direction: column;
@@ -10443,16 +10434,9 @@ button,
 
 .app-sidebar .app-sidebar__inner.sidebar-shadow {
   padding: 2px 1.5rem 1.5rem;
-  height: calc(100vh - 80px); /* Sesuaikan 80px dengan tinggi header Anda jika perlu */
   overflow-y: auto;
 }
 
-.app-sidebar .scrollbar-sidebar {
-  z-index: 15;
-  width: 100%;
-  height: calc(100vh - 80px);
-  overflow-y: auto;
-}
 
 .app-sidebar .app-sidebar-bg {
   position: absolute;
@@ -10934,17 +10918,6 @@ overflow-y: auto !important;
   padding-left: 1em;
 }
 
-.closed-sidebar:not(.sidebar-mobile-open) .app-sidebar .scrollbar-sidebar {
-  position: static;
-  height: auto;
-  overflow: initial !important;
-}
-
-.closed-sidebar:not(.sidebar-mobile-open) .app-sidebar:hover .scrollbar-sidebar {
-  position: absolute;
-  height: 100%;
-  overflow-y: auto !important;
-}
 
 .closed-sidebar:not(.closed-sidebar-mobile) .app-header .app-header__logo {
   width: 80px;
@@ -43150,8 +43123,4 @@ span.multiselect-native-select select {
 .after-img {
   max-width: 100%;
 }
-
-.scrollbar-sidebar.sidebar-shadow {
-  height: calc(100vh - 60px); /* 100% tinggi viewport dikurangi tinggi header (60px) */
-  overflow-y: auto; /* Tampilkan scrollbar jika konten lebih panjang dari tinggi yang ditentukan */
-}          
+         
