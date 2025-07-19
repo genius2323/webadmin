@@ -199,8 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <!-- Modal Pilih Sales (mengikuti template bd-example-modal-lg) -->
-<div class="modal fade bd-example-modal-lg" id="modalSales" tabindex="-1" role="dialog" aria-labelledby="modalSalesLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade bd-example-modal-md" id="modalSales" tabindex="-1" role="dialog" aria-labelledby="modalSalesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalSalesLabel">Pilih Sales</h5>

@@ -28,6 +28,7 @@
     <!-- Memuat file CSS utama dari folder /public -->
     <link href="<?= base_url('assets/css/base.css') ?>" rel="stylesheet">
     <link href="<?= base_url('desain/assets/css/fa-bold-icons.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/css/custom-sidebar.css') ?>" rel="stylesheet">
     <!-- Pastikan custom-backdrop.css di-load terakhir agar menimpa CSS lain -->
     <link href="<?= base_url('assets/css/custom-backdrop.css') ?>" rel="stylesheet">
     <style>

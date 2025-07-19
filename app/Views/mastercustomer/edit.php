@@ -46,7 +46,12 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label>Sales</label>
-                    <input type="text" name="sales" class="form-control" value="<?= esc($customer['sales']) ?>">
+                    <div class="input-group">
+                        <input type="text" name="sales" id="salesInput" class="form-control" value="<?= esc($customer['sales']) ?>" readonly>
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalSales">Pilih Sales</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-row">
@@ -64,16 +69,16 @@
                 <div class="card-body">
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label>NPWP (Nomor)</label>
+                            <label>Nomor</label>
                             <div style="display:flex;gap:2px;max-width:420px;align-items:center;">
                                 <?php
-                                    $npwpNomor = str_pad(preg_replace('/[^0-9]/', '', $customer['npwp_nomor'] ?? ''), 15, ' ', STR_PAD_RIGHT);
-                                    for($i=0;$i<15;$i++):
-                                        if($i>0) {
-                                            if($i==2||$i==5||$i==8) echo '<span style=\'font-weight:bold;\'>.</span>';
-                                            if($i==9) echo '<span style=\'font-weight:bold;\'>-</span>';
-                                            if($i==12) echo '<span style=\'font-weight:bold;\'>.</span>';
-                                        }
+                                $npwpNomor = str_pad(preg_replace('/[^0-9]/', '', $customer['npwp_nomor'] ?? ''), 15, ' ', STR_PAD_RIGHT);
+                                for($i=0;$i<15;$i++):
+                                    if($i>0) {
+                                        if($i==2||$i==5||$i==8) echo '<span style="font-weight:bold;">.</span>';
+                                        if($i==9) echo '<span style="font-weight:bold;">-</span>';
+                                        if($i==12) echo '<span style="font-weight:bold;">.</span>';
+                                    }
                                 ?>
                                     <input type="text" name="npwp_nomor[]" maxlength="1" pattern="[0-9]" class="form-control text-center" style="width:2.2em;display:inline-block;padding:2px 4px;" autocomplete="off" value="<?= esc($npwpNomor[$i]) ?>">
                                 <?php endfor; ?>
@@ -82,13 +87,13 @@
                     </div>
                     <div class="form-row mt-2">
                         <div class="form-group col-md-6">
-                            <label>NPWP (Atas Nama)</label>
+                            <label>Atas Nama</label>
                             <input type="text" name="npwp_atas_nama" class="form-control" value="<?= esc($customer['npwp_atas_nama']) ?>">
                         </div>
                         <div class="form-group col-md-6">
-                            <label>NPWP (Alamat)</label>
+                            <label>Alamat</label>
                             <input type="text" name="npwp_alamat" class="form-control" value="<?= esc($customer['npwp_alamat']) ?>">
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -102,9 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const npwpInputs = document.querySelectorAll('input[name="npwp_nomor[]"]');
   npwpInputs.forEach((input, idx) => {
     input.addEventListener('input', function(e) {
-      // Hanya izinkan 1 digit
       let val = this.value.replace(/[^0-9]/g, '');
-      if (val.length > 1) val = val.slice(-1); // ambil digit terakhir jika paste
+      if (val.length > 1) val = val.slice(-1);
       this.value = val;
       if (val.length === 1 && idx < npwpInputs.length - 1) {
         setTimeout(() => {
@@ -144,6 +148,97 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  // Modal Pilih Sales
+  function loadSalesModal(keyword = '') {
+    fetch('/salesapi?search=' + encodeURIComponent(keyword))
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector('#tableSalesModal tbody');
+        tbody.innerHTML = '';
+        if (data.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="3" class="text-center">Tidak ada data</td></tr>';
+        } else {
+          data.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${row.kode}</td>
+              <td>${row.nama}</td>
+              <td><button type="button" class="btn btn-success btn-sm pilih-sales-btn" data-kode="${row.kode}" data-nama="${row.nama}">Pilih</button></td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+      });
+  }
+
+  // Tampilkan data sales saat modal dibuka
+  $('#modalSales').on('show.bs.modal', function() {
+    loadSalesModal();
+    document.getElementById('searchSales').value = '';
+  });
+
+  // Search sales di modal
+  document.getElementById('searchSales').addEventListener('input', function() {
+    loadSalesModal(this.value);
+  });
+
+  // Pilih sales dari modal
+  document.body.addEventListener('click', function(e) {
+    if (e.target.classList.contains('pilih-sales-btn')) {
+      const kode = e.target.getAttribute('data-kode');
+      const nama = e.target.getAttribute('data-nama');
+      document.getElementById('salesInput').value = kode + ' - ' + nama;
+      $('#modalSales').modal('hide');
+    }
+  });
 });
 </script>
+
+<!-- Modal Pilih Sales (mengikuti template bd-example-modal-lg) -->
+<div class="modal fade bd-example-modal-md" id="modalSales" tabindex="-1" role="dialog" aria-labelledby="modalSalesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalSalesLabel">Pilih Sales</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" id="searchSales" class="form-control" placeholder="Cari">
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover" id="tableSalesModal">
+            <thead>
+              <tr>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                $salesModel = new \App\Models\MasterSalesModel();
+                $sales = $salesModel->where('deleted_at', null)->findAll();
+              ?>
+              <?php foreach ($sales as $row): ?>
+                <tr>
+                  <td><?= esc($row['kode']) ?></td>
+                  <td><?= esc($row['nama']) ?></td>
+                  <td><button type="button" class="btn btn-success btn-sm pilih-sales-btn" data-kode="<?= esc($row['kode']) ?>" data-nama="<?= esc($row['nama']) ?>">Pilih</button></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?= $this->endSection(); ?>

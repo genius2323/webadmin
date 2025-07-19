@@ -1,0 +1,7 @@
+.app-sidebar__inner{
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+}
+.app-header__logo{
+    width: 250px;
+}
