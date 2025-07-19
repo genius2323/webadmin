@@ -38,6 +38,14 @@
 }
 /* Pastikan footer selalu di bawah layar */
 /* Footer tidak fixed, biar tidak menindih konten */
+
+/* Fix modal backdrop agar tidak di depan modal */
+.modal-backdrop {
+  z-index: 1040 !important;
+}
+.modal {
+  z-index: 1050 !important;
+}
 .app-footer {
   position: relative;
   width: 100%;

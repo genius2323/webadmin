@@ -222,7 +222,17 @@ document.addEventListener('DOMContentLoaded', function() {
               </tr>
             </thead>
             <tbody>
-              <!-- Data sales akan diisi via JS -->
+              <?php
+                $salesModel = new \App\Models\MasterSalesModel();
+                $sales = $salesModel->where('deleted_at', null)->findAll();
+              ?>
+              <?php foreach ($sales as $row): ?>
+                <tr>
+                  <td><?= esc($row['kode']) ?></td>
+                  <td><?= esc($row['nama']) ?></td>
+                  <td><button type="button" class="btn btn-success btn-sm pilih-sales-btn" data-kode="<?= esc($row['kode']) ?>" data-nama="<?= esc($row['nama']) ?>">Pilih</button></td>
+                </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
         </div>

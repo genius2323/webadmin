@@ -28,19 +28,14 @@
     <!-- Memuat file CSS utama dari folder /public -->
     <link href="<?= base_url('assets/css/base.css') ?>" rel="stylesheet">
     <link href="<?= base_url('desain/assets/css/fa-bold-icons.css') ?>" rel="stylesheet">
+    <!-- Pastikan custom-backdrop.css di-load terakhir agar menimpa CSS lain -->
+    <link href="<?= base_url('assets/css/custom-backdrop.css') ?>" rel="stylesheet">
     <style>
         .app-sidebar.sidebar-shadow .scrollbar-sidebar {
             height: calc(100vh - 80px); /* Sesuaikan 80px dengan tinggi header Anda jika perlu */
             overflow-y: auto;
         }
-        /* Fix modal always on top */
-        .modal,
-        .modal.show {
-            z-index: 21000 !important;
-        }
-        .modal-backdrop, .blockOverlay {
-            z-index: 10000 !important;
-        }
+        /* Fix modal always on top - gunakan custom-backdrop.css saja */
         /* Prevent parent overflow from hiding modal */
         .app-main__outer, .main-content, .app-main__inner, .app-content, .main-card, .card-body {
             overflow: visible !important;
