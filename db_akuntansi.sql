@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2025 at 10:39 AM
+-- Generation Time: Jul 21, 2025 at 10:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -333,7 +333,8 @@ CREATE TABLE `mastercustomer` (
 --
 
 INSERT INTO `mastercustomer` (`id`, `kode_customer`, `nama_customer`, `alamat`, `contact_person`, `kota`, `provinsi`, `sales`, `no_hp`, `batas_piutang`, `npwp_nomor`, `npwp_atas_nama`, `npwp_alamat`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'TOYOTA', 'TOYOTA', 'Jl Gunung Sanghyang No 10', 'Genius Hartono', 'Badung', 'Bali', '', '081906426886', 19902212.00, '232443455443233', 'TOYOTA', 'Jl Gunung Sanghyang No 10', '2025-07-16 08:06:27', '2025-07-16 08:09:35', NULL);
+(1, 'TOYOTA', 'TOYOTA', 'Jl Gunung Sanghyang No 10', 'Genius Hartono', 'Badung', 'Bali', '', '081906426886', 19902212.00, '232443455443233', 'TOYOTA', 'Jl Gunung Sanghyang No 10', '2025-07-16 08:06:27', '2025-07-19 03:24:45', '2025-07-19 03:24:45'),
+(2, 'DAIHATSU', 'DAIHATSU', 'Jl Gunung Sanghyang No 10', 'Genius Hartono', 'Badung', 'Bali', 'BONO - BONU', '081906426886', 1000000000.00, '235351268768656', 'DAIHATSU', 'Canggu', '2025-07-19 03:23:07', '2025-07-19 05:01:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -362,7 +363,7 @@ CREATE TABLE `mastersales` (
 INSERT INTO `mastersales` (`id`, `kode`, `nama`, `alamat`, `tempat_lahir`, `no_hp`, `no_ktp`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (4, 'BONO', 'BONU', 'CANGGU', 'DPS', '0819292331312', '82124124128313', 'Menikah', '2025-07-15 23:21:56', '2025-07-15 23:24:09', NULL),
 (5, 'CACA', 'COCO', 'DENPASAR', 'DPS', '01934928374982', '273473246238', 'Menikah', '2025-07-15 23:24:44', '2025-07-15 23:24:48', '2025-07-16 07:24:48'),
-(6, 'TONO', 'HARUN', 'CANGGU', 'DENPASAR', '', '', 'Menikah', '2025-07-15 23:34:32', '2025-07-15 23:34:32', NULL);
+(6, 'TONO', 'HARUN', 'CANGGU', 'DENPASAR', '081263612361', '237486327468723234234243', 'Menikah', '2025-07-15 23:34:32', '2025-07-20 17:49:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -530,6 +531,7 @@ CREATE TABLE `sales` (
   `discount` decimal(18,2) DEFAULT 0.00,
   `tax` decimal(18,2) DEFAULT 0.00,
   `grand_total` decimal(18,2) NOT NULL,
+  `nama_ky` varchar(100) DEFAULT NULL,
   `payment_a` decimal(18,2) DEFAULT 0.00,
   `payment_b` decimal(18,2) DEFAULT 0.00,
   `account_receivable` decimal(18,2) DEFAULT 0.00,
@@ -546,10 +548,12 @@ CREATE TABLE `sales` (
 -- Dumping data for table `sales`
 --
 
-INSERT INTO `sales` (`id`, `nomor_nota`, `tanggal_nota`, `customer`, `sales`, `status`, `total`, `discount`, `tax`, `grand_total`, `payment_a`, `payment_b`, `account_receivable`, `payment_system`, `otoritas`, `batas_tanggal_sistem`, `mode_batas_tanggal`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'INV-20250716-0DE2E', '2025-07-16', 'BUDI', 'BONO', 'draft', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'manual', '2025-07-16 05:40:06', '2025-07-16 05:40:06', NULL),
-(2, 'INV-20250716-75ABC', '2025-07-16', 'budi', 'bono', 'draft', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'manual', '2025-07-16 05:45:07', '2025-07-16 05:45:07', NULL),
-(3, 'INV-20250716-A2DA7', '2025-07-16', 'dsfsd', 'sddsd', 'draft', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'manual', '2025-07-16 05:49:24', '2025-07-16 05:49:24', NULL);
+INSERT INTO `sales` (`id`, `nomor_nota`, `tanggal_nota`, `customer`, `sales`, `status`, `total`, `discount`, `tax`, `grand_total`, `nama_ky`, `payment_a`, `payment_b`, `account_receivable`, `payment_system`, `otoritas`, `batas_tanggal_sistem`, `mode_batas_tanggal`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(3, 'INV-20250716-A2DA7', '2025-07-16', 'dsfsd', 'sddsd', 'draft', 0.00, 0.00, 0.00, 0.00, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'manual', '2025-07-16 05:49:24', '2025-07-21 06:12:16', '2025-07-21 06:12:16'),
+(4, 'INV-20250721-230CE', '2025-07-21', 'DAIHATSU - DAIHATSU', 'TONO - HARUN', 'draft', 0.00, 0.00, 0.00, 0.00, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'manual', '2025-07-21 03:29:26', '2025-07-21 03:29:26', NULL),
+(5, 'INV-20250721-FEF5E', '2025-07-21', 'DAIHATSU - DAIHATSU', 'TONO - HARUN', 'draft', 0.00, 0.00, 0.00, 0.00, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'manual', '2025-07-21 04:50:23', '2025-07-21 04:50:23', NULL),
+(6, 'INV-20250721-5E009', '2025-07-21', 'DAIHATSU - DAIHATSU', 'TONO - HARUN', 'draft', 0.00, 0.00, 0.00, 0.00, 'Genius Hartono', 0.00, 0.00, 0.00, NULL, NULL, NULL, 'manual', '2025-07-21 04:55:48', '2025-07-21 04:55:48', NULL),
+(7, 'INV-20250721-4A344', '2025-07-21', 'DAIHATSU - DAIHATSU', 'BONO - BONU', 'draft', 0.00, 0.00, 0.00, 0.00, 'Genius Hartono', 0.00, 0.00, 0.00, NULL, NULL, NULL, 'manual', '2025-07-21 06:23:08', '2025-07-21 06:23:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -624,7 +628,7 @@ CREATE TABLE `system_date_limits` (
 --
 
 INSERT INTO `system_date_limits` (`id`, `menu`, `batas_tanggal`, `mode_batas_tanggal`, `created_at`, `updated_at`) VALUES
-(10, 'penjualan', '2025-07-08', 'manual', '2025-07-08 08:32:28', '2025-07-15 13:50:14');
+(10, 'penjualan', '2025-07-02', 'manual', '2025-07-08 08:32:28', '2025-07-21 14:11:21');
 
 -- --------------------------------------------------------
 
@@ -1052,7 +1056,7 @@ ALTER TABLE `kaki`
 -- AUTO_INCREMENT for table `mastercustomer`
 --
 ALTER TABLE `mastercustomer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `mastersales`
@@ -1094,7 +1098,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `sales_items`
