@@ -50,7 +50,8 @@
                     <hr>
 
                     <h4>Daftar Item</h4>
-                    <table class="table table-bordered">
+                    <div class="table-responsive-custom">
+                    <table class="table table-bordered table-hover table-striped table-sm" style="font-size:0.95em;">
                         <thead>
                             <tr>
                                 <th>No.</th>
@@ -83,9 +84,11 @@
                             <?php endif; ?>
                         </tbody>
                     </table>
-                    
+                    </div>
+                    <link rel="stylesheet" href="<?= base_url('assets/css/table-responsive-custom.css') ?>">
+
                     <div class="mt-3">
-                        <a href="/penjualan" class="btn btn-secondary">Kembali ke Daftar Penjualan</a>
+                        <a href="<?= site_url('penjualan') ?>" class="btn btn-secondary">Kembali</a>
                         <a href="/penjualan/finalize/<?= $penjualan['id']; ?>" class="btn btn-success" onclick="return confirm('Apakah Anda yakin ingin menyelesaikan penjualan ini?')">Selesaikan Penjualan</a>
                     </div>
 

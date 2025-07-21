@@ -7,6 +7,42 @@ use App\Models\PenjualanModel;
 
 class Penjualan extends BaseController
 {
+    public function edit($id)
+    {
+        $penjualan = $this->penjualanModel->find($id);
+        if (!$penjualan) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Data penjualan tidak ditemukan.');
+        }
+        $customerModel = new \App\Models\MasterCustomerModel();
+        $salesModel = new \App\Models\MasterSalesModel();
+        $data = [
+            'title' => 'Edit Penjualan',
+            'penjualan' => $penjualan,
+            'customers' => $customerModel->findAll(),
+            'sales' => $salesModel->findAll(),
+        ];
+        return view('penjualan/edit', $data);
+    }
+
+    public function delete($id)
+    {
+        // Soft delete di database utama
+        $this->penjualanModel->update($id, ['deleted_at' => date('Y-m-d H:i:s')]);
+        // Soft delete di database kedua
+        $db2 = \Config\Database::connect('db2');
+        $db2->table('sales')->where('id', $id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
+        session()->setFlashdata('success', 'Data penjualan berhasil dihapus (soft delete) di dua database.');
+        return redirect()->to('/datapenjualan');
+    }
+    public function datapenjualan()
+    {
+        $penjualan = $this->penjualanModel->findAll();
+        $data = [
+            'title' => 'Data Penjualan',
+            'penjualan' => $penjualan,
+        ];
+        return view('penjualan/datapenjualan', $data);
+    }
     protected $penjualanModel;
 
     public function __construct()
@@ -17,10 +53,20 @@ class Penjualan extends BaseController
     public function index()
     {
         $nomor_nota = 'INV-' . date('Ymd') . '-' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 5));
+        $customerModel = new \App\Models\MasterCustomerModel();
+        $salesModel = new \App\Models\MasterSalesModel();
+        $systemDateLimitsModel = new \App\Models\SystemDateLimitsModel();
+        $batas = $systemDateLimitsModel->where('menu', 'penjualan')->orderBy('id', 'desc')->first();
+        $batas_tanggal_sistem = $batas['batas_tanggal'] ?? '';
+        $mode_batas_tanggal = $batas['mode_batas_tanggal'] ?? 'manual';
         $data = [
             'title' => 'Daftar Penjualan',
             'penjualan' => $this->penjualanModel->findAll(),
             'nomor_nota' => $nomor_nota,
+            'customers' => $customerModel->findAll(),
+            'sales' => $salesModel->findAll(),
+            'batas_tanggal_sistem' => $batas_tanggal_sistem,
+            'mode_batas_tanggal' => $mode_batas_tanggal,
         ];
         return view('penjualan/index', $data);
     }
@@ -62,6 +108,7 @@ class Penjualan extends BaseController
             'sales'        => $this->request->getPost('sales'),
             'status'       => 'draft',
             'grand_total'  => 0,
+            'nama_ky'      => session('user_nama'),
         ];
 
         $penjualanId = $this->penjualanModel->insert($data, true);

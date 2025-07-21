@@ -63,17 +63,17 @@
                     <td><?= esc($row['provinsi']) ?></td>
                     <td><?= esc($row['sales']) ?></td>
                     <td><?= esc($row['no_hp']) ?></td>
-                    <td class="text-right">Rp <?= number_format($row['batas_piutang'],0,',','.') ?></td>
+                    <td class="text-right" style="white-space: nowrap !important;">Rp <?= number_format($row['batas_piutang'],0,',','.') ?></td>
                     <td><?= esc($row['npwp_nomor']) ?></td>
-                    <td class="d-flex justify-content-center align-items-center" style="gap:3px; min-width:70px;">
-                        <div style="display: flex; justify-content: center; align-items: center; gap: 6px; width: 100%;">
+                    <td class="text-center align-items-center" style="gap:3px; min-width:100px;">
+                        
                             <a href="<?= site_url('mastercustomer/edit/' . $row['id']) ?>" class="btn btn-sm btn-warning" title="Edit">
                                 <i class="fa fa-edit"></i>
                             </a>
                             <a href="<?= site_url('mastercustomer/delete/' . $row['id']) ?>" class="btn btn-sm btn-danger" title="Hapus" onclick="return confirm('Yakin ingin menghapus data ini?')">
                                 <i class="fa fa-trash"></i>
                             </a>
-                        </div>                        
+                        
                     </td>
                 </tr>
                 <?php endforeach; ?>

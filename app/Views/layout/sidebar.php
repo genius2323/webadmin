@@ -49,10 +49,25 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?= site_url('penjualan') ?>" class="<?= $uri->getSegment(1) == 'penjualan' ? 'mm-active' : '' ?>">
+                        <a href="#" class="<?= in_array($uri->getSegment(1), ['penjualan','datapenjualan']) ? 'mm-active' : '' ?>">
                             <i class="metismenu-icon fa fa-shopping-cart"></i>
                             Penjualan
+                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                         </a>
+                        <ul>
+                            <li>
+                                <a href="<?= site_url('penjualan') ?>" class="<?= $uri->getSegment(1) == 'penjualan' ? 'mm-active' : '' ?>">
+                                    <i class="metismenu-icon pe-7s-plus"></i>
+                                    Input Penjualan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= site_url('datapenjualan') ?>" class="<?= $uri->getSegment(1) == 'datapenjualan' ? 'mm-active' : '' ?>">
+                                    <i class="metismenu-icon pe-7s-note2"></i>
+                                    Data Penjualan
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="<?= site_url('batas-tanggal') ?>" class="<?= $uri->getSegment(1) == 'batas-tanggal' ? 'mm-active' : '' ?>">
@@ -85,10 +100,25 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?= site_url('penjualan') ?>" class="<?= $uri->getSegment(1) == 'penjualan' ? 'mm-active' : '' ?>">
+                        <a href="#" class="<?= in_array($uri->getSegment(1), ['penjualan','datapenjualan']) ? 'mm-active' : '' ?>">
                             <i class="metismenu-icon fa fa-shopping-cart"></i>
                             Penjualan
+                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                         </a>
+                        <ul>
+                            <li>
+                                <a href="<?= site_url('penjualan') ?>" class="<?= $uri->getSegment(1) == 'penjualan' ? 'mm-active' : '' ?>">
+                                    <i class="metismenu-icon pe-7s-plus"></i>
+                                    Input Penjualan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= site_url('datapenjualan') ?>" class="<?= $uri->getSegment(1) == 'datapenjualan' ? 'mm-active' : '' ?>">
+                                    <i class="metismenu-icon pe-7s-note2"></i>
+                                    Data Penjualan
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     
                     <li class="app-sidebar__heading">Master</li>
@@ -119,7 +149,12 @@
                                 </a>
                             </li>
                         </ul>
-                
+                    <li>
+                        <a href="<?= site_url('masterbarang') ?>">
+                            <i class="metismenu-icon fa fa-cube"></i>
+                            Master Barang
+                        </a>
+                    </li>
                     <li>
                         <a href="#" class="<?= in_array($uri->getSegment(1), ['masterkategori','masterdaya']) ? 'mm-active' : '' ?>">
                             <i class="metismenu-icon fa fa-list-alt"></i>

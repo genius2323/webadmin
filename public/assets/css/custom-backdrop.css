@@ -2,15 +2,18 @@
 .modal-backdrop {
   z-index: 1040 !important;
   opacity: 0 !important;
+  vertical-align: middle;
 }
 .modal {
   z-index: 1050 !important;
+  vertical-align: middle;
 }
 
 .modal-backdrop.fade,
 .modal-backdrop.fade.show {
   z-index: 0 !important;
   opacity: 0 !important;
+  vertical-align: middle;
 }
 
 /* Modal selalu di atas semua elemen */
@@ -25,5 +28,5 @@
   top: 0 !important;
   left: 0 !important;
   width: 100vw !important;
-  height: 100vh !important;
+  height: 100vh !important;  
 }

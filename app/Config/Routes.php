@@ -43,6 +43,9 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->resource('user');
     
     // --- Rute Penjualan (CRUD Lengkap) ---
+    $routes->get('penjualan/edit/(:num)', 'Penjualan::edit/$1'); // Edit penjualan
+    $routes->get('penjualan/delete/(:num)', 'Penjualan::delete/$1'); // Soft delete penjualan
+    $routes->get('datapenjualan', 'Penjualan::datapenjualan'); // Halaman Data Penjualan
     $routes->get('penjualan', 'Penjualan::index'); // Daftar semua penjualan
     $routes->get('penjualan/new', 'Penjualan::new'); // Form tambah penjualan baru
     $routes->post('penjualan/create', 'Penjualan::create'); // Proses pembuatan penjualan baru
@@ -183,5 +186,7 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('masterwarnasinar/edit/(:num)', 'MasterWarnaSinar::edit/$1');
     $routes->post('masterwarnasinar/update/(:num)', 'MasterWarnaSinar::update/$1');
     $routes->post('masterwarnasinar/delete/(:num)', 'MasterWarnaSinar::delete/$1');
+
+    $routes->get('masterbarang', 'MasterBarang::index');
 
 });

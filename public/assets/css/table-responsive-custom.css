@@ -5,6 +5,7 @@
 .table-responsive-custom table {
   min-width: 800px;
 }
+
 @media (max-width: 991.98px) {
   .table-responsive-custom table {
     min-width: 700px;
@@ -30,3 +31,4 @@
     padding: 0.35rem 0.5rem;
   }
 }
+

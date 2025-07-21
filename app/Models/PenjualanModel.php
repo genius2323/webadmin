@@ -21,6 +21,7 @@ class PenjualanModel extends Model
         'discount',
         'status',
         'grand_total',
+        'nama_ky',
         'created_at',
         'updated_at',
         'deleted_at',
