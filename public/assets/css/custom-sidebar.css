@@ -2,6 +2,7 @@
   max-height: 100vh !important;
   overflow-y: auto !important;
   padding-left: 15px !important;
+  width: 280px !important;
 }
 .app-header__logo{
     width: 250px;

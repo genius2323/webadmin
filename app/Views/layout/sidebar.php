@@ -29,7 +29,7 @@
             </button>
         </span>
     </div>
-    <div class="">
+    
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
                 <?php $departmentId = session()->get('department_id'); ?>
@@ -211,5 +211,5 @@
                 <?php endif; ?>
             </ul>                
         </div>
-    </div>
+    
 </div>
