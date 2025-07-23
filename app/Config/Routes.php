@@ -187,6 +187,12 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->post('masterwarnasinar/update/(:num)', 'MasterWarnaSinar::update/$1');
     $routes->post('masterwarnasinar/delete/(:num)', 'MasterWarnaSinar::delete/$1');
 
+    // Master Barang
     $routes->get('masterbarang', 'MasterBarang::index');
+    $routes->get('masterbarang/create', 'MasterBarang::create');
+    $routes->post('masterbarang/store', 'MasterBarang::store');
+    $routes->get('masterbarang/edit/(:num)', 'MasterBarang::edit/$1');
+    $routes->post('masterbarang/update/(:num)', 'MasterBarang::update/$1');
+    $routes->get('masterbarang/delete/(:num)', 'MasterBarang::delete/$1');
 
 });

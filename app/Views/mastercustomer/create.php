@@ -12,8 +12,8 @@
         </div>
     </div>
 </div>
-<div class="main-card mb-3 card">
-    <div class="card-body">
+<div class="main-card mb-3 card shadow-sm border-0">
+    <div class="card-body p-4">
         <form action="<?= site_url('mastercustomer/save') ?>" method="post">
             <div class="form-row">
                 <div class="form-group col-md-4">

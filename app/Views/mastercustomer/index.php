@@ -31,8 +31,9 @@
             <input type="text" name="search" class="form-control" placeholder="Cari nama customer..." value="<?= esc($_GET['search'] ?? '') ?>">
             <button type="submit" class="btn btn-info">Cari</button>
         </form>
-        <div class="table-responsive-custom">
-            <table class="table table-hover table-striped table-bordered table-sm" style="font-size:0.95em;">
+        <link rel="stylesheet" href="/assets/css/table-responsive-custom.css">
+        <div class="table-responsive-custom" style="overflow-x:auto;max-width:100vw;">
+        <table class="table table-hover table-striped table-bordered table-sm" style="font-size:0.95em;">
             <thead>
                 <tr>
                     <th class="text-center">Kode</th>
@@ -63,7 +64,7 @@
                     <td><?= esc($row['provinsi']) ?></td>
                     <td><?= esc($row['sales']) ?></td>
                     <td><?= esc($row['no_hp']) ?></td>
-                    <td class="text-right" style="white-space: nowrap !important;">Rp <?= number_format($row['batas_piutang'],0,',','.') ?></td>
+                    <td class="text-right">Rp <?= number_format($row['batas_piutang'],0,',','.') ?></td>
                     <td><?= esc($row['npwp_nomor']) ?></td>
                     <td class="text-center align-items-center" style="gap:3px; min-width:100px;">
                         
@@ -80,7 +81,7 @@
             </tbody>
         </table>
         </div>
-        <link rel="stylesheet" href="<?= base_url('assets/css/table-responsive-custom.css') ?>">
+        <!-- CSS sudah di-link di atas -->
     </div>
 </div>
 <?= $this->endSection(); ?>

@@ -92,20 +92,18 @@
             <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-plus me-2"></i>  Tambah Penjualan</button>
           </div>
 <!-- Modal Pilih Customer -->
-<div class="modal fade bd-example-modal-md" id="modalCustomer" tabindex="-1" role="dialog" aria-labelledby="modalCustomerLabel" aria-hidden="true">
+<div class="modal fade" id="modalCustomer" tabindex="-1" aria-labelledby="modalCustomerLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalCustomerLabel">Pilih Customer</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="form-group">
           <input type="text" id="searchCustomer" class="form-control" placeholder="Cari">
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive" style="overflow-x:auto;max-width:100vw;">
           <table class="table table-bordered table-hover" id="tableCustomerModal">
             <thead>
               <tr>
@@ -134,14 +132,12 @@
 </div>
 
 <!-- Modal Pilih Sales -->
-<div class="modal fade bd-example-modal-md" id="modalSales" tabindex="-1" role="dialog" aria-labelledby="modalSalesLabel" aria-hidden="true">
+<div class="modal fade" id="modalSales" tabindex="-1" aria-labelledby="modalSalesLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalSalesLabel">Pilih Sales</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -169,7 +165,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>

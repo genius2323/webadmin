@@ -96,8 +96,8 @@
     </div>
 
 
-    <!-- Memuat Bootstrap JS agar modal bisa berjalan -->
-    <script src="<?= base_url('assets/js/vendors/bootstrap.bundle.min.js') ?>"></script>
+    <!-- Memuat Bootstrap 5 JS dari CDN agar modal dan komponen Bootstrap 5 berjalan -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="<?= base_url('assets/js/scripts-init/app.js') ?>"></script>
 </body>
 

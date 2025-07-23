@@ -15,8 +15,8 @@
         </div>
     </div>
 </div>
-<div class="main-card mb-3 card">
-    <div class="card-body">
+<div class="main-card mb-3 card shadow-sm border-0">
+    <div class="card-body p-4">
         <form action="<?= site_url('mastersales/save') ?>" method="post" autocomplete="off">
             <div class="row mb-3">
                 <div class="col-md-6">

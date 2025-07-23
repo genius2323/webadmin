@@ -25,14 +25,14 @@
             </button>
         </div>
     <?php endif; ?>
-    <div class="main-card mb-3 card">
-        <div class="card-body">
+    <div class="main-card mb-3 card shadow-sm border-0">
+        <div class="card-body p-4">
             <form method="get" action="" class="mb-3 d-flex" style="gap:10px;">
                 <input type="text" name="search" class="form-control" placeholder="Cari nama/kode/alamat..." value="<?= esc($_GET['search'] ?? '') ?>">
                 <button type="submit" class="btn btn-info">Cari</button>
             </form>
-            <div class="table-responsive-custom">
-            <table style="width: 100%;" id="salesTable" class="table table-hover table-striped table-bordered">
+            <div class="table-responsive table-masterbarang-responsive" style="max-width:100vw;overflow-x:auto;">
+            <table class="table table-hover table-striped table-bordered table-sm align-middle" style="font-size:0.95em; margin-bottom:0;">
                 <thead>
                     <tr>
                         <th class="text-center">Kode</th>
@@ -71,7 +71,7 @@
                 </tbody>
             </table>
             </div>
-            <link rel="stylesheet" href="<?= base_url('assets/css/table-responsive-custom.css') ?>">
+            <link rel="stylesheet" href="<?= base_url('assets/css/table-masterbarang-responsive.css') ?>">
         </div>
     </div>
 <?= $this->endSection() ?>

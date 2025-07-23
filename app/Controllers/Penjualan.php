@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
@@ -7,21 +6,36 @@ use App\Models\PenjualanModel;
 
 class Penjualan extends BaseController
 {
-    public function edit($id)
+    // ...existing code...
+
+    // AJAX endpoint untuk pembayaran tunai
+    public function paymentTunai($id)
     {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setStatusCode(400)->setJSON(['success' => false, 'message' => 'Invalid request']);
+        }
         $penjualan = $this->penjualanModel->find($id);
         if (!$penjualan) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Data penjualan tidak ditemukan.');
+            return $this->response->setStatusCode(404)->setJSON(['success' => false, 'message' => 'Data penjualan tidak ditemukan']);
         }
-        $customerModel = new \App\Models\MasterCustomerModel();
-        $salesModel = new \App\Models\MasterSalesModel();
-        $data = [
-            'title' => 'Edit Penjualan',
-            'penjualan' => $penjualan,
-            'customers' => $customerModel->findAll(),
-            'sales' => $salesModel->findAll(),
+        $json = $this->request->getJSON();
+        $uangTunai = (float)($json->uang_tunai ?? 0);
+        $kembalian = (string)($json->kembalian ?? '');
+        $total = (float)($json->total ?? 0);
+        // Update kolom payment_a, payment_system, account_receivable, grand_total
+        $updateData = [
+            'payment_a' => $uangTunai,
+            'payment_system' => 'tunai',
+            'account_receivable' => 0,
+            'grand_total' => $total,
         ];
-        return view('penjualan/edit', $data);
+        $this->penjualanModel->update($id, $updateData);
+        // Jika ada db2, update juga
+        try {
+            $db2 = \Config\Database::connect('db2');
+            $db2->table('sales')->where('id', $id)->update($updateData);
+        } catch (\Throwable $e) {}
+        return $this->response->setJSON(['success' => true]);
     }
 
     public function delete($id)
@@ -131,17 +145,22 @@ class Penjualan extends BaseController
     public function detail($id)
     {
         $penjualan = $this->penjualanModel->find($id);
-
         if (!$penjualan) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Data penjualan tidak ditemukan.');
         }
-
         $items = [];
-
+        // Ambil data master barang
+        $masterBarangModel = new \App\Models\MasterBarangModel();
+        $masterBarang = $masterBarangModel
+            ->select('products.*, categories.name as category_name')
+            ->join('categories', 'categories.id = products.category_id', 'left')
+            ->where('products.deleted_at', null)
+            ->findAll();
         $data = [
             'title' => 'Detail Penjualan: ' . $penjualan['nomor_nota'],
             'penjualan' => $penjualan,
             'items' => $items,
+            'masterBarang' => $masterBarang,
         ];
 
         return view('penjualan/detail', $data);
