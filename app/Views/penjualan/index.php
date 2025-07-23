@@ -75,7 +75,7 @@
             <div class="input-group">
               <input type="text" class="form-control" id="customerInput" name="customer" readonly>
               <div class="input-group-append">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalCustomer">Pilih Customer</button>
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalCustomer">Pilih Customer</button>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@
             <div class="input-group">
               <input type="text" class="form-control" id="salesInput" name="sales" readonly>
               <div class="input-group-append">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalSales">Pilih Sales</button>
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalSales">Pilih Sales</button>
               </div>
             </div>
           </div>
@@ -131,92 +131,79 @@
   </div>
 </div>
 
-<!-- Modal Pilih Sales -->
-<div class="modal fade" id="modalSales" tabindex="-1" aria-labelledby="modalSalesLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalSalesLabel">Pilih Sales</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <input type="text" id="searchSales" class="form-control" placeholder="Cari">
+        <!-- Modal Pilih Customer -->
+        <div class="modal fade" id="modalCustomer" tabindex="-1" aria-labelledby="modalCustomerLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalCustomerLabel">Pilih Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group mb-3">
+                  <input type="text" id="searchCustomer" class="form-control" placeholder="Cari Customer...">
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover" id="tableCustomerModal">
+                    <thead>
+                      <tr>
+                        <th>Kode</th>
+                        <th>Nama</th>
+                        <th class="text-center">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($customers as $row): ?>
+                      <tr>
+                        <td><?= esc($row['kode_customer']) ?></td>
+                        <td><?= esc($row['nama_customer']) ?></td>
+                        <td class="text-center"><button type="button" class="btn btn-success btn-sm pilih-customer-btn" data-kode="<?= esc($row['kode_customer']) ?>" data-nama="<?= esc($row['nama_customer']) ?>"><i class="fa fa-check"></i> Pilih</button></td>
+                      </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover" id="tableSalesModal">
-            <thead>
-              <tr>
-                <th>Kode</th>
-                <th>Nama</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($sales as $row): ?>
-                <tr>
-                  <td><?= esc($row['kode']) ?></td>
-                  <td><?= esc($row['nama']) ?></td>
-                  <td><button type="button" class="btn btn-success btn-sm pilih-sales-btn" data-kode="<?= esc($row['kode']) ?>" data-nama="<?= esc($row['nama']) ?>">Pilih</button></td>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+        <!-- Modal Pilih Sales -->
+        <div class="modal fade" id="modalSales" tabindex="-1" aria-labelledby="modalSalesLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalSalesLabel">Pilih Sales</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group mb-3">
+                  <input type="text" id="searchSales" class="form-control" placeholder="Cari Sales...">
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover" id="tableSalesModal">
+                    <thead>
+                      <tr>
+                        <th>Kode</th>
+                        <th>Nama</th>
+                        <th class="text-center">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($sales as $row): ?>
+                      <tr>
+                        <td><?= esc($row['kode']) ?></td>
+                        <td><?= esc($row['nama']) ?></td>
+                        <td class="text-center"><button type="button" class="btn btn-success btn-sm pilih-sales-btn" data-kode="<?= esc($row['kode']) ?>" data-nama="<?= esc($row['nama']) ?>"><i class="fa fa-check"></i> Pilih</button></td>
+                      </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-$(document).ready(function() {
-  // Modal Customer
-  function filterCustomer(keyword = '') {
-    $('#tableCustomerModal tbody tr').each(function() {
-      var nama = $(this).find('td:nth-child(2)').text().toLowerCase();
-      var kode = $(this).find('td:nth-child(1)').text().toLowerCase();
-      if (nama.indexOf(keyword.toLowerCase()) !== -1 || kode.indexOf(keyword.toLowerCase()) !== -1) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
-    });
-  }
-  $('#searchCustomer').on('input', function() {
-    filterCustomer($(this).val());
-  });
-  $(document.body).on('click', '.pilih-customer-btn', function() {
-    var kode = $(this).data('kode');
-    var nama = $(this).data('nama');
-    $('#customerInput').val(kode + ' - ' + nama);
-    $('#modalCustomer').modal('hide');
-  });
-
-  // Modal Sales
-  function filterSales(keyword = '') {
-    $('#tableSalesModal tbody tr').each(function() {
-      var nama = $(this).find('td:nth-child(2)').text().toLowerCase();
-      var kode = $(this).find('td:nth-child(1)').text().toLowerCase();
-      if (nama.indexOf(keyword.toLowerCase()) !== -1 || kode.indexOf(keyword.toLowerCase()) !== -1) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
-    });
-  }
-  $('#searchSales').on('input', function() {
-    filterSales($(this).val());
-  });
-  $(document.body).on('click', '.pilih-sales-btn', function() {
-    var kode = $(this).data('kode');
-    var nama = $(this).data('nama');
-    $('#salesInput').val(kode + ' - ' + nama);
-    $('#modalSales').modal('hide');
-  });
-});
+          
 </script>
 <!-- Modal Pilih Customer -->
 <div class="modal fade bd-example-modal-md" id="modalCustomer" tabindex="-1" role="dialog" aria-labelledby="modalCustomerLabel" aria-hidden="true">
@@ -350,16 +337,56 @@ $(document).ready(function() {
 });
 </script>
         <script>
-        function pilihCustomer(kode, nama) {
-          document.getElementById('customer').value = kode + ' - ' + nama;
-          var modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalCustomer'));
-          modal.hide();
-        }
-        function pilihSales(kode, nama) {
-          document.getElementById('sales').value = kode + ' - ' + nama;
-          var modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalSales'));
-          modal.hide();
-        }
+        // Search filter Customer
+        document.addEventListener('DOMContentLoaded', function() {
+          var searchCustomer = document.getElementById('searchCustomer');
+          if (searchCustomer) {
+            searchCustomer.addEventListener('input', function() {
+              var filter = searchCustomer.value.toLowerCase();
+              var rows = document.querySelectorAll('#tableCustomerModal tbody tr');
+              rows.forEach(function(row) {
+                var nama = row.cells[1].textContent.toLowerCase();
+                var kode = row.cells[0].textContent.toLowerCase();
+                row.style.display = (nama.indexOf(filter) > -1 || kode.indexOf(filter) > -1) ? '' : 'none';
+              });
+            });
+          }
+          // Pilih Customer
+          document.body.addEventListener('click', function(e) {
+            if (e.target.classList.contains('pilih-customer-btn')) {
+              var kode = e.target.getAttribute('data-kode');
+              var nama = e.target.getAttribute('data-nama');
+              var input = document.getElementById('customerInput');
+              if (input) input.value = kode + ' - ' + nama;
+              var modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalCustomer'));
+              modal.hide();
+            }
+          });
+          // Search filter Sales
+          var searchSales = document.getElementById('searchSales');
+          if (searchSales) {
+            searchSales.addEventListener('input', function() {
+              var filter = searchSales.value.toLowerCase();
+              var rows = document.querySelectorAll('#tableSalesModal tbody tr');
+              rows.forEach(function(row) {
+                var nama = row.cells[1].textContent.toLowerCase();
+                var kode = row.cells[0].textContent.toLowerCase();
+                row.style.display = (nama.indexOf(filter) > -1 || kode.indexOf(filter) > -1) ? '' : 'none';
+              });
+            });
+          }
+          // Pilih Sales
+          document.body.addEventListener('click', function(e) {
+            if (e.target.classList.contains('pilih-sales-btn')) {
+              var kode = e.target.getAttribute('data-kode');
+              var nama = e.target.getAttribute('data-nama');
+              var input = document.getElementById('salesInput');
+              if (input) input.value = kode + ' - ' + nama;
+              var modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalSales'));
+              modal.hide();
+            }
+          });
+        });
         </script>
         <!-- Modal Pilih Customer -->
         <div class="modal fade" id="modalCustomer" tabindex="-1" aria-labelledby="modalCustomerLabel" aria-hidden="true">
