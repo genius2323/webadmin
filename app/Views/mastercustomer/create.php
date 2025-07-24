@@ -49,7 +49,7 @@
                     <div class="input-group">
                         <input type="text" name="sales" id="salesInput" class="form-control" readonly>
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalSales">Pilih Sales</button>
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalSales">Pilih Sales</button>
                         </div>
                     </div>
 
@@ -176,16 +176,22 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 
-  // Tampilkan data sales saat modal dibuka
-  $('#modalSales').on('show.bs.modal', function() {
-    loadSalesModal();
-    document.getElementById('searchSales').value = '';
-  });
+  // Tampilkan data sales saat modal dibuka (Bootstrap 5 native)
+  var modalSales = document.getElementById('modalSales');
+  if (modalSales) {
+    modalSales.addEventListener('show.bs.modal', function () {
+      loadSalesModal();
+      document.getElementById('searchSales').value = '';
+    });
+  }
 
   // Search sales di modal
-  document.getElementById('searchSales').addEventListener('input', function() {
-    loadSalesModal(this.value);
-  });
+  var searchSales = document.getElementById('searchSales');
+  if (searchSales) {
+    searchSales.addEventListener('input', function() {
+      loadSalesModal(this.value);
+    });
+  }
 
   // Pilih sales dari modal
   document.body.addEventListener('click', function(e) {
@@ -193,26 +199,39 @@ document.addEventListener('DOMContentLoaded', function() {
       const kode = e.target.getAttribute('data-kode');
       const nama = e.target.getAttribute('data-nama');
       document.getElementById('salesInput').value = kode + ' - ' + nama;
-      $('#modalSales').modal('hide');
+      // Tutup modal dengan Bootstrap 5 API
+      var modal = bootstrap.Modal.getInstance(document.getElementById('modalSales'));
+      if (modal) {
+        modal.hide();
+      }
     }
   });
 });
 </script>
 
 
-<!-- Modal Pilih Sales (mengikuti template bd-example-modal-lg) -->
-<div class="modal fade bd-example-modal-md" id="modalSales" tabindex="-1" role="dialog" aria-labelledby="modalSalesLabel" aria-hidden="true">
+
+<!-- Modal Pilih Sales Bootstrap 5 -->
+<style>
+  /* Modal turun sedikit agar judul tidak tertutup header */
+  .modal-dialog {
+    margin-top: 70px;
+  }
+  @media (max-width: 576px) {
+    .modal-dialog {
+      margin-top: 30px;
+    }
+  }
+</style>
+<div class="modal fade" id="modalSales" tabindex="-1" aria-labelledby="modalSalesLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalSalesLabel">Pilih Sales</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <input type="text" id="searchSales" class="form-control" placeholder="Cari">
+          <input type="text" id="searchSales" class="form-control" placeholder="Cari Sales...">
         </div>
         <div class="table-responsive">
           <table class="table table-bordered table-hover" id="tableSalesModal">
@@ -240,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>

@@ -1,0 +1,178 @@
+/* Modern Success Notification */
+.modern-success-notif {
+    background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
+    color: #fff;
+    padding: 18px 28px 18px 56px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px 0 rgba(30, 41, 59, 0.13);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 1.08rem;
+    margin-bottom: 28px;
+    animation: fadeInDown 0.7s;
+}
+
+.modern-success-notif .modern-alert-icon {
+    position: absolute;
+    left: 22px;
+    font-size: 1.4rem;
+    top: 18px;
+}
+
+.modern-success-notif .modern-alert-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    line-height: 1;
+    margin-left: 10px;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modern Card & Form Style for Consistent UI */
+.batas-tanggal-modern {
+    max-width: 420px;
+    margin: auto;
+    margin-top: 40px;
+    box-shadow: 0 4px 32px 0 rgba(30, 41, 59, 0.10);
+    border-radius: 18px;
+    background: #fff;
+}
+
+.batas-tanggal-modern .modern-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.batas-tanggal-modern .modern-card-icon {
+    background: linear-gradient(135deg, #1976d2 60%, #3bb6e1 100%);
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 2.1rem;
+    box-shadow: 0 2px 8px 0 rgba(30, 41, 59, 0.10);
+}
+
+.batas-tanggal-modern .modern-card-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.batas-tanggal-modern .modern-card-subtitle {
+    font-size: 1.01rem;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.batas-tanggal-modern .form-group {
+    margin-bottom: 22px;
+}
+
+.batas-tanggal-modern label {
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.batas-tanggal-modern select.form-control,
+.batas-tanggal-modern input.form-control[type="text"] {
+    font-size: 1.08rem;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
+    background: #f8fafc;
+    box-shadow: none;
+    outline: none;
+    transition: 0.2s;
+}
+
+.batas-tanggal-modern select.form-control {
+    padding-left: 38px;
+    appearance: none;
+}
+
+.batas-tanggal-modern .dropdown-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #1976d2;
+    font-size: 1.1rem;
+}
+
+.batas-tanggal-modern .dropdown-chevron {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+.batas-tanggal-modern .btn.btn-primary {
+    min-width: 140px;
+    font-weight: 600;
+    font-size: 1.08rem;
+    border-radius: 8px;
+    padding: 10px 0;
+    margin-top: 8px;
+    box-shadow: 0 2px 8px 0 rgba(30, 41, 59, 0.08);
+}
+
+.batas-tanggal-modern .form-check-input[type="radio"] {
+    accent-color: #1976d2;
+    width: 18px;
+    height: 18px;
+}
+
+.batas-tanggal-modern .modern-alert {
+    background: linear-gradient(90deg, #4fc3f7 0%, #1976d2 100%);
+    color: #fff;
+    padding: 14px 18px 14px 48px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px 0 rgba(30, 41, 59, 0.08);
+    margin-bottom: 18px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.batas-tanggal-modern .modern-alert .modern-alert-icon {
+    position: absolute;
+    left: 16px;
+    font-size: 1.3rem;
+    top: 13px;
+}
+
+.batas-tanggal-modern .modern-alert .modern-alert-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+}

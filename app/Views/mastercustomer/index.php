@@ -1,39 +1,29 @@
-<?= $this->extend('layout/template'); ?>
-<?= $this->section('content'); ?>
-<div class="app-page-title">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-            <div class="page-title-icon">
-                <i class="fa fa-users"></i>
-            </div>
-            <div>Master Customer
-                <div class="page-title-subheading">Daftar seluruh data customer.</div>
-            </div>
-        </div>
-        <div class="page-title-actions">
-            <a href="<?= site_url('mastercustomer/create') ?>" class="btn btn-primary">
-                <i class="fa fa-plus"></i> Tambah Customer
-            </a>
-        </div>
+<?= $this->extend('layout/template') ?>
+<?= $this->section('content') ?>
+<div class="page-header-modern">
+    <div>
+        <h2 class="page-title">Master Customer</h2>
+        <div class="page-subtitle">Daftar seluruh data customer.</div>
     </div>
+    <a href="<?= site_url('mastercustomer/create') ?>" class="btn-modern btn-primary-modern">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+            <path d="M12 5v14m7-7H5" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+        </svg> Tambah Customer
+    </a>
 </div>
 <?php if (session()->getFlashdata('success')): ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert-modern alert-success-modern">
         <?= esc(session()->getFlashdata('success')) ?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close-alert" onclick="this.parentElement.style.display='none'">&times;</button>
     </div>
 <?php endif; ?>
-<div class="main-card mb-3 card">
-    <div class="card-body">
-        <form method="get" action="" class="mb-3 d-flex" style="gap:10px;">
-            <input type="text" name="search" class="form-control" placeholder="Cari nama customer..." value="<?= esc($_GET['search'] ?? '') ?>">
-            <button type="submit" class="btn btn-info">Cari</button>
-        </form>
-        <link rel="stylesheet" href="/assets/css/table-responsive-custom.css">
-        <div class="table-responsive-custom" style="overflow-x:auto;max-width:100vw;">
-        <table class="table table-hover table-striped table-bordered table-sm" style="font-size:0.95em;">
+<div class="card-modern">
+    <form method="get" action="" class="d-flex" style="gap:10px; margin-bottom:1.5rem;">
+        <input type="text" name="search" class="form-control-modern" placeholder="Cari nama customer..." value="<?= esc($_GET['search'] ?? '') ?>">
+        <button type="submit" class="btn-modern btn-info-modern">Cari</button>
+    </form>
+    <div class="table-responsive-modern">
+        <table class="table-modern">
             <thead>
                 <tr>
                     <th class="text-center">Kode</th>
@@ -51,37 +41,38 @@
             </thead>
             <tbody>
                 <?php foreach ($customers as $row): ?>
-                <?php
+                    <?php
                     $search = $_GET['search'] ?? '';
                     if ($search && stripos($row['nama_customer'], $search) === false) continue;
-                ?>
-                <tr>
-                    <td><?= esc($row['kode_customer']) ?></td>
-                    <td><?= esc($row['nama_customer']) ?></td>
-                    <td><?= esc($row['alamat']) ?></td>
-                    <td><?= esc($row['contact_person']) ?></td>
-                    <td><?= esc($row['kota']) ?></td>
-                    <td><?= esc($row['provinsi']) ?></td>
-                    <td><?= esc($row['sales']) ?></td>
-                    <td><?= esc($row['no_hp']) ?></td>
-                    <td class="text-right">Rp <?= number_format($row['batas_piutang'],0,',','.') ?></td>
-                    <td><?= esc($row['npwp_nomor']) ?></td>
-                    <td class="text-center align-items-center" style="gap:3px; min-width:100px;">
-                        
-                            <a href="<?= site_url('mastercustomer/edit/' . $row['id']) ?>" class="btn btn-sm btn-warning" title="Edit">
-                                <i class="fa fa-edit"></i>
+                    ?>
+                    <tr>
+                        <td class="text-center"><?= esc($row['kode_customer']) ?></td>
+                        <td class="text-center"><?= esc($row['nama_customer']) ?></td>
+                        <td class="text-center"><?= esc($row['alamat']) ?></td>
+                        <td class="text-center"><?= esc($row['contact_person']) ?></td>
+                        <td class="text-center"><?= esc($row['kota']) ?></td>
+                        <td class="text-center"><?= esc($row['provinsi']) ?></td>
+                        <td class="text-center"><?= esc($row['sales']) ?></td>
+                        <td class="text-center"><?= esc($row['no_hp']) ?></td>
+                        <td class="text-center" style="white-space: nowrap !important;">Rp <?= number_format($row['batas_piutang'], 0, ',', '.') ?></td>
+                        <td class="text-center"><?= esc($row['npwp_nomor']) ?></td>
+                        <td style="min-width:100px;display:flex;gap:6px;justify-content:center;align-items:center;">
+                            <a href="<?= site_url('mastercustomer/edit/' . $row['id']) ?>" class="btn-modern btn-warning-modern" title="Edit">
+                                <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+                                    <path d="M4 21h17" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L7 20.5 2 22l1.5-5L18.5 2.5Z" stroke="#fff" stroke-width="2" />
+                                </svg>
                             </a>
-                            <a href="<?= site_url('mastercustomer/delete/' . $row['id']) ?>" class="btn btn-sm btn-danger" title="Hapus" onclick="return confirm('Yakin ingin menghapus data ini?')">
-                                <i class="fa fa-trash"></i>
+                            <a href="<?= site_url('mastercustomer/delete/' . $row['id']) ?>" class="btn-modern btn-danger-modern" title="Hapus" onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+                                    <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z" stroke="#fff" stroke-width="2" />
+                                </svg>
                             </a>
-                        
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        </div>
-        <!-- CSS sudah di-link di atas -->
     </div>
 </div>
 <?= $this->endSection(); ?>

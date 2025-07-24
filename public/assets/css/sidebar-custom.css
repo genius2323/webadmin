@@ -1,0 +1,148 @@
+.hamburger-btn {}
+
+body.sidebar-open .hamburger-btn {
+    display: none !important;
+}
+
+body:not(.sidebar-open) .main-header {
+    padding-left: 0 !important;
+    transition: padding-left 0.3s;
+}
+
+body:not(.sidebar-open) .main-content {
+    margin-left: 0 !important;
+    transition: margin-left 0.3s;
+}
+
+body.sidebar-open .main-header {
+    padding-left: 270px !important;
+    transition: padding-left 0.3s;
+}
+
+body.sidebar-open .main-content {
+    margin-left: 250px !important;
+    transition: margin-left 0.3s;
+}
+
+@media (max-width: 991px) {
+
+    body.sidebar-open .main-header,
+    body.sidebar-open .main-content {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+}
+
+/* Sidebar & Hamburger Custom CSS */
+.hamburger-btn {
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white !important;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    z-index: 1101;
+    transition: background 0.2s;
+    border-radius: 15%;
+}
+
+.hamburger-btn:hover {
+    background: rgba(30, 41, 59, 0.08);
+}
+
+.hamburger-btn span {
+    width: 32px;
+    height: 3px;
+    margin: 5px 0;
+    background: #222;
+    border-radius: 2px;
+    transition: 0.4s cubic-bezier(.4, 0, .2, 1);
+    display: block;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background: #1976d2;
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.5);
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background: #1976d2;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 20px;
+    height: 3px;
+    margin: 2px 0;
+    background: #222;
+    border-radius: 2px;
+    transition: 0.4s;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.sidebar-mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1100;
+    display: none;
+}
+
+body.sidebar-open .sidebar-mobile-overlay {
+    display: block;
+}
+
+#mainSidebar {
+    background: rgba(30, 41, 59, 0.98);
+    color: #fff;
+    z-index: 2002;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 260px;
+    transition: left 0.3s cubic-bezier(.4, 0, .2, 1);
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+}
+
+#mainSidebar.open {
+    left: 0;
+}
+
+.sidebar-menu .active,
+.sidebar-menu .submenu .active {
+    background: #232b47 !important;
+    color: #fff !important;
+    border-radius: 0 18px 18px 0;
+}
+
+@media (max-width: 991px) {
+    #mainSidebar {
+        /* Tetap gunakan setting global, tidak perlu override kecuali ada kebutuhan khusus */
+    }
+}
