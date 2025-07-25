@@ -41,7 +41,7 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
 
     // Manajemen User
     $routes->resource('user');
-    
+
     // --- Rute Penjualan (CRUD Lengkap) ---
     $routes->get('penjualan/edit/(:num)', 'Penjualan::edit/$1'); // Edit penjualan
     $routes->get('penjualan/delete/(:num)', 'Penjualan::delete/$1'); // Soft delete penjualan
@@ -63,7 +63,7 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     // --- Master Data Manual Route ---
     $routes->get('masterkategori', 'MasterKategori::index');
     $routes->get('masterkategori/create', 'MasterKategori::create');
-    $routes->post('masterkategori/save', 'MasterKategori::save');
+    $routes->post('masterkategori/store', 'MasterKategori::store');
     $routes->get('masterkategori/edit/(:num)', 'MasterKategori::edit/$1');
     $routes->post('masterkategori/update/(:num)', 'MasterKategori::update/$1');
     $routes->post('masterkategori/delete/(:num)', 'MasterKategori::delete/$1');
@@ -194,5 +194,4 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('masterbarang/edit/(:num)', 'MasterBarang::edit/$1');
     $routes->post('masterbarang/update/(:num)', 'MasterBarang::update/$1');
     $routes->get('masterbarang/delete/(:num)', 'MasterBarang::delete/$1');
-
 });

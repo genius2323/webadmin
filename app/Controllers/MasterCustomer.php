@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Controllers;
+
 use App\Models\MasterCustomerModel;
 
 class MasterCustomer extends BaseController
@@ -21,7 +23,7 @@ class MasterCustomer extends BaseController
                 ->orLike('npwp_nomor', $search)
                 ->orLike('npwp_atas_nama', $search)
                 ->orLike('npwp_alamat', $search)
-            ->groupEnd();
+                ->groupEnd();
         }
         $data['customers'] = $model->findAll();
         $data['title'] = 'Master Customer';
@@ -40,6 +42,10 @@ class MasterCustomer extends BaseController
         $db2 = \Config\Database::connect('db2');
         $npwpNomorArr = $this->request->getPost('npwp_nomor');
         $npwpNomor = is_array($npwpNomorArr) ? implode('', $npwpNomorArr) : $npwpNomorArr;
+        // Ambil dan parsing batas_piutang ke angka
+        $batasPiutangInput = $this->request->getPost('batas_piutang');
+        $batasPiutang = preg_replace('/[^0-9]/', '', $batasPiutangInput);
+        $batasPiutang = $batasPiutang === '' ? 0 : (int)$batasPiutang;
         $data = [
             'kode_customer' => $this->request->getPost('kode_customer'),
             'nama_customer' => $this->request->getPost('nama_customer'),
@@ -49,7 +55,7 @@ class MasterCustomer extends BaseController
             'provinsi' => $this->request->getPost('provinsi'),
             'sales' => $this->request->getPost('sales'),
             'no_hp' => $this->request->getPost('no_hp'),
-            'batas_piutang' => $this->request->getPost('batas_piutang'),
+            'batas_piutang' => $batasPiutang,
             'npwp_nomor' => $npwpNomor,
             'npwp_atas_nama' => $this->request->getPost('npwp_atas_nama'),
             'npwp_alamat' => $this->request->getPost('npwp_alamat'),
@@ -83,6 +89,10 @@ class MasterCustomer extends BaseController
         $model = new MasterCustomerModel();
         $npwpNomorArr = $this->request->getPost('npwp_nomor');
         $npwpNomor = is_array($npwpNomorArr) ? implode('', $npwpNomorArr) : $npwpNomorArr;
+        // Ambil dan parsing batas_piutang ke angka
+        $batasPiutangInput = $this->request->getPost('batas_piutang');
+        $batasPiutang = preg_replace('/[^0-9]/', '', $batasPiutangInput);
+        $batasPiutang = $batasPiutang === '' ? 0 : (int)$batasPiutang;
         $data = [
             'kode_customer' => $this->request->getPost('kode_customer'),
             'nama_customer' => $this->request->getPost('nama_customer'),
@@ -92,7 +102,7 @@ class MasterCustomer extends BaseController
             'provinsi' => $this->request->getPost('provinsi'),
             'sales' => $this->request->getPost('sales'),
             'no_hp' => $this->request->getPost('no_hp'),
-            'batas_piutang' => $this->request->getPost('batas_piutang'),
+            'batas_piutang' => $batasPiutang,
             'npwp_nomor' => $npwpNomor,
             'npwp_atas_nama' => $this->request->getPost('npwp_atas_nama'),
             'npwp_alamat' => $this->request->getPost('npwp_alamat'),

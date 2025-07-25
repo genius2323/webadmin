@@ -4,7 +4,57 @@
     <div>
         <h2 class="page-title">Master Kategori</h2>
         <div class="page-subtitle">Daftar seluruh data kategori.</div>
+        </s>
     </div>
+
+    <?php if (!empty($pager)): ?>
+        <style>
+            .pagination-modern-container {
+                display: flex;
+                justify-content: center;
+                margin: 1.5rem 0 0.5rem 0;
+            }
+
+            .pagination-modern {
+                display: flex;
+                gap: 4px;
+                background: #fff;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+                padding: 6px 16px;
+            }
+
+            .pagination-modern li {
+                list-style: none;
+            }
+
+            .pagination-modern a,
+            .pagination-modern span {
+                display: block;
+                min-width: 32px;
+                padding: 6px 10px;
+                border-radius: 6px;
+                color: #333;
+                background: none;
+                text-align: center;
+                text-decoration: none;
+                font-weight: 500;
+                transition: background 0.15s, color 0.15s;
+            }
+
+            .pagination-modern .active span,
+            .pagination-modern a:hover {
+                background: #007bff;
+                color: #fff;
+            }
+
+            .pagination-modern .disabled span {
+                color: #bbb;
+                background: #f5f5f5;
+            }
+        </style>
+
+    <?php endif; ?>
     <a href="<?= site_url('masterkategori/create') ?>" class="btn-modern btn-primary-modern">
         <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
             <path d="M12 5v14m7-7H5" stroke="#fff" stroke-width="2" stroke-linecap="round" />
@@ -68,6 +118,9 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+    </div>
+    <div class="pagination-modern-container">
+        <?= $pager->links('default', 'modern_pager') ?>
     </div>
 </div>
 <?= $this->endSection(); ?>

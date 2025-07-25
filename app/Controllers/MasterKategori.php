@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\MasterKategoriModel;
@@ -8,7 +9,8 @@ class MasterKategori extends BaseController
     public function index()
     {
         $model = new MasterKategoriModel();
-        $data['kategori'] = $model->where('deleted_at', null)->findAll();
+        $data['kategori'] = $model->where('deleted_at', null)->paginate(15);
+        $data['pager'] = $model->pager;
         $data['title'] = 'Master Kategori';
         return view('master_kategori/index', $data);
     }

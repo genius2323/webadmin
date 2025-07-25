@@ -1,0 +1,154 @@
+/* Material 3 Sidebar Style (inspired by material-web)
+   - Elevation, ripple, active indicator, smooth expand/collapse, modern spacing
+*/
+.sidebar {
+  width: 260px;
+  background: var(--md-sys-color-surface, #fff);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 0.5px 1.5px rgba(0,0,0,0.04);
+  border-radius: 20px 20px 20px 20px;
+  transition: box-shadow 0.3s cubic-bezier(.4,0,.2,1), left 0.3s cubic-bezier(.4,0,.2,1);
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 1100;
+  overflow-y: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  will-change: left;
+}
+.sidebar.open {
+  left: 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.16), 0 1.5px 4px rgba(0,0,0,0.08);
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px 8px 24px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--md-sys-color-on-surface, #222);
+}
+.sidebar-title {
+  letter-spacing: 0.02em;
+}
+.close-sidebar-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--md-sys-color-on-surface-variant, #888);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-sidebar-btn:hover {
+  color: var(--md-sys-color-primary, #1976d2);
+}
+.sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 0;
+}
+.sidebar-heading {
+  padding: 16px 24px 4px 24px;
+  font-size: 0.95rem;
+  color: var(--md-sys-color-on-surface-variant, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+.sidebar-menu li {
+  position: relative;
+}
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 24px;
+  color: var(--md-sys-color-on-surface, #222);
+  border-radius: 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+.sidebar-menu a .material-symbols-rounded {
+  font-size: 1.5rem;
+  color: var(--md-sys-color-on-surface-variant, #888);
+  transition: color 0.18s;
+}
+.sidebar-menu a.active,
+.sidebar-menu a:active,
+.sidebar-menu a:focus {
+  background: var(--md-sys-color-secondary-container, #e3e7fd);
+  color: var(--md-sys-color-primary, #1976d2);
+}
+.sidebar-menu a.active .material-symbols-rounded,
+.sidebar-menu a:active .material-symbols-rounded,
+.sidebar-menu a:focus .material-symbols-rounded {
+  color: var(--md-sys-color-primary, #1976d2);
+}
+.sidebar-menu a::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 4px;
+  height: 32px;
+  background: var(--md-sys-color-primary, #1976d2);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.18s, transform 0.18s;
+}
+.sidebar-menu a.active::after {
+  opacity: 1;
+  transform: translateY(-50%) scaleY(1);
+}
+.sidebar-menu .has-sub > a::after {
+  content: '\e5cf'; /* expand_more */
+  font-family: 'Material Symbols Rounded';
+  font-size: 1.2em;
+  margin-left: auto;
+  color: var(--md-sys-color-on-surface-variant, #888);
+  transition: transform 0.2s;
+}
+.sidebar-menu .has-sub.open > a::after {
+  transform: rotate(180deg);
+  color: var(--md-sys-color-primary, #1976d2);
+}
+.sidebar-menu .submenu {
+  max-height: 0;
+  overflow: hidden;
+  background: transparent;
+  transition: max-height 0.32s cubic-bezier(.4,0,.2,1);
+  margin-left: 24px;
+  border-left: 2px solid var(--md-sys-color-outline-variant, #e0e0e0);
+  padding-left: 8px;
+}
+.sidebar-menu .has-sub.open .submenu {
+  max-height: 800px;
+  transition: max-height 0.32s cubic-bezier(.4,0,.2,1);
+}
+.sidebar-mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(33,33,33,0.18);
+  z-index: 1099;
+  transition: opacity 0.2s;
+}
+.sidebar.open ~ .sidebar-mobile-overlay,
+.sidebar-mobile-overlay.active {
+  display: block;
+  opacity: 1;
+}
+@media (max-width: 991px) {
+  .sidebar {
+    left: -280px;
+    transition: left 0.3s cubic-bezier(.4,0,.2,1);
+  }
+  .sidebar.open {
+    left: 0;
+  }
+}
